@@ -70,6 +70,16 @@ local maxNumber = 3
 -- สุ่มเลข
 local randomNumber = math.random(minNumber, maxNumber)
 print("UI ที่ได้:", randomNumber)
+spawn(function()
+	while wait() do 
+		for i = 1,255 do --255
+			if randomNumber == 3 then
+				_G.Color = Color3.fromHSV(i/255, 1, 1)-- สี Gui
+				wait()
+			end
+		end
+	end
+end)
 if randomNumber == 1 then
 	wait(0.01)
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
@@ -82,16 +92,6 @@ elseif randomNumber == 2 then
 	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 elseif randomNumber == 3 then
 	wait(0.01)
-	spawn(function()
-		while wait() do 
-			for i = 1,255 do --255
-				if randomNumber == 3 then
-					_G.Color = Color3.fromHSV(i/255, 1, 1)-- สี Gui
-					wait()
-				end
-			end
-		end
-	end)
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 else
