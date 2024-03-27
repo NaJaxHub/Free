@@ -714,6 +714,37 @@ local function QuestCheck()
 	}
 end
 
+task.spawn(function() 
+	while task.wait() do
+		if _G.Auto_Farm_Level then 
+			pcall(function()
+				QuestCheck()
+				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
+						EquipWeapon(_G.Select_Weapon)
+						if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+						end
+						if v.Humanoid.Health <= v.Humanoid.MaxHealth * 30/100 then 
+							Attack()
+							AttackXFunction()
+							FASTAttack()
+							if v.Humanoid.Health <= 0 then
+								v:Destroy()
+							end
+							_G.SuperFastAttack = true
+						else
+							_G.SuperFastAttack = false
+						end
+						game:GetService 'VirtualUser':CaptureController()
+						game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
+					end
+				end
+			end)
+		end
+	end
+end)
+
 	task.spawn(function() 
 		while task.wait() do
 			if _G.Auto_Farm_Level then 
@@ -725,24 +756,17 @@ end
 							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 								if v.Name == MobName then
 									if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-										repeat task.wait()
+										repeat task.wait() EquipWeapon(_G.Select_Weapon)
 											local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
 											if not string.find(QuestTitle, MobName) then
 												game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
 											else
-												EquipWeapon(_G.Select_Weapon)
-												if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
-													game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-												end
 												PosMon = v.HumanoidRootPart.CFrame
 												if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
 													if v.Humanoid.Health <= v.Humanoid.MaxHealth * 40/100 then 
 														Attack()
 														AttackXFunction()
 														FASTAttack()
-														if v.Humanoid.Health <= 0 then
-															v:Destroy()
-														end
 														_G.SuperFastAttack = true
 														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * PosOdslob * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
 													else
