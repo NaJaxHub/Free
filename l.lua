@@ -65,7 +65,7 @@ getgenv().TextUI_IIII = "Wallet : xxx-xxx-xxxx | 37/3/2567" --19-3-2567--28/4/25
 			  --
 -- กำหนดช่วงของตัวเลขที่ต้องการสุ่ม
 local minNumber = 1
-local maxNumber = 3
+local maxNumber = 2--3
 
 -- สุ่มเลข
 local randomNumber = math.random(minNumber, maxNumber)
@@ -98,7 +98,7 @@ else
 	wait(0.01)
 	--_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	--_G.ColorWiat = Color3.fromRGB(0,0,0)
-	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
+	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))() 
 end
 
 print("library..Set")
@@ -296,7 +296,6 @@ function LoadSettings()
 			local L_54_ = game:GetService("HttpService"):JSONDecode(readfile("Kz Hub Free Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
 			for L_55_forvar0, L_56_forvar1 in pairs(L_54_) do
 				_G.Settings[L_55_forvar0] = L_56_forvar1
-				print(L_56_forvar1)
 			end
 		end
 	else
