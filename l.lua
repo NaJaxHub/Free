@@ -512,21 +512,6 @@ local function QuestCheck()
 			QuestLevel = 1
 			NPCPosition = CFrame.new(1059.99731, 16.9222069, 1549.28162, -0.95466274, 7.29721794e-09, 0.297689587, 1.05190106e-08, 1, 9.22064114e-09, -0.297689587, 1.19340022e-08, -0.95466274)
 		end
-        --[[if Lvl == 190 or Lvl <= 209 then -- Dark Master
-			Mon = "Prisoner"
-			QuestName = "PrisonerQuest"
-			QuestLevel = 1
-			MobName = "Prisoner"
-			NPCPosition = CFrame.new(5411, 96, 690)
-			MobCFrame = CFrame.new(5308, 2, 474)
-		elseif Lvl == 210 or Lvl <= 249 then -- Dark Master
-			Mon = "Dangerous Prisoner"
-			QuestName = "PrisonerQuest"
-			QuestLevel = 2
-			MobName = "Dangerous Prisoner"
-			NPCPosition = CFrame.new(5411, 96, 690)
-			MobCFrame = CFrame.new(5308, 2, 474)
-        end]]
 		return {
 			[1] = QuestLevel,
 			[2] = NPCPosition,
@@ -537,7 +522,34 @@ local function QuestCheck()
 			[7] = MobCFrame
 		}
 	end
-
+	if Lvl >= 190 or Lvl <= 209 then -- Dark Master
+		Mon = "Prisoner"
+		QuestName = "PrisonerQuest"
+		QuestLevel = 1
+		MobName = "Prisoner"
+		NPCPosition = CFrame.new(5411, 96, 690)
+		local matchingCFrames = {}
+		local result = string.gsub(MobName, "Lv. ", "")
+		local result2 = string.gsub(result, "[%[%]]", "")
+		local result3 = string.gsub(result2, "%d+", "")
+		local result4 = string.gsub(result3, "%s+", "")
+		
+		for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
+			if v.Name == result4 then
+				table.insert(matchingCFrames, v.CFrame)
+			end
+			MobCFrame = matchingCFrames
+		end
+		return {
+			[1] = QuestLevel,
+			[2] = NPCPosition,
+			[3] = MobName,
+			[4] = QuestName,
+			[5] = LevelRequire,
+			[6] = Mon,
+			[7] = MobCFrame
+		}
+	end
 	if Lvl >= 210 and Lvl <= 249 then
 		MobName = "Dangerous Prisoner"
 		QuestName = "PrisonerQuest"
@@ -709,7 +721,7 @@ end
 					QuestCheck()
 					local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 					if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-						if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then EquipWeapon(_G.Select_Weapon)
+						if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 								if v.Name == MobName then
 									if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
@@ -791,10 +803,8 @@ end
 							end
 						else
 							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestName, QuestLevel)
-							Tween(PosMonLv)
 						end
 					end
-				
 				end)
 			end
 		end
