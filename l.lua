@@ -90,14 +90,14 @@ elseif randomNumber == 2 then
 	print("UI 2 ทำงาน")
 end]] 
 
-_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
+--[[_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 _G.ColorWiat = Color3.fromRGB(30,12,12)
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
-
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()]]
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 --[[if randomNumber == 1 or randomNumber == 2 then
 else
 	print("UI ไม่ทำงาน")
-	--local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
+	--
 	--print("ระบบได้เลือกอันเดิม") 
 end]]
 
