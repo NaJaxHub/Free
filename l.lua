@@ -68,34 +68,35 @@ local minNumber = 1
 local maxNumber = 2--3
 
 -- สุ่มเลข
-local _G.randomNumber = math.random(minNumber, maxNumber)
-print("สุ่ม UI ได้ UI ที่:", _G.randomNumber)
+local randomNumber = math.random(minNumber, maxNumber)
+print("สุ่ม UI ได้ UI ที่:", randomNumber)
 --[[spawn(function()
 	while wait() do 
 		for i = 1,255 do --255
-			if _G.randomNumber == 3 then
+			if randomNumber == 3 then
 				_G.Color = Color3.fromHSV(i/255, 1, 1)-- สี Gui
 				wait()
 			end
 		end
 	end
 end)]] 
-if _G.randomNumber == 1 then
+if randomNumber == 1 then
 	wait(0.01)
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 	print("UI 1 ทำงาน")
-elseif _G.randomNumber == 2 then
+elseif randomNumber == 2 then
 	wait(0.01)
 	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
 	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 	print("UI 2 ทำงาน")
---elseif _G.randomNumber == 3 then
-	--wait(0.01)
+elseif randomNumber == 3 then
+	wait(0.01)
 	--_G.ColorWiat = Color3.fromRGB(0,0,0)
-	--local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
+	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
+	print("UI 3 ทำงาน")
 else
 	wait(0.01)
 	--_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
