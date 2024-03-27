@@ -81,24 +81,14 @@ print("สุ่ม UI ได้ UI ที่:", randomNumber)
 	end
 end)]] 
 if randomNumber == 1 then
-	wait(0.01)
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
-	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 	print("UI 1 ทำงาน")
 elseif randomNumber == 2 then
-	wait(0.01)
 	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
-	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 	print("UI 2 ทำงาน")
-elseif randomNumber == 3 then
-	wait(0.01)
-	--_G.ColorWiat = Color3.fromRGB(0,0,0)
-	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
-	print("UI 3 ทำงาน")
 else
-	wait(0.01)
 	--_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	--_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI ไม่ทำงาน")
@@ -106,6 +96,9 @@ else
 	print("ระบบได้เลือกอันเดิม") 
 end
 
+if randomNumber == 1 or randomNumber == 2 then
+	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
+end
 print("library..Set")
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
 	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
