@@ -64,12 +64,12 @@ getgenv().TextUI_IIII = "Wallet : xxx-xxx-xxxx | 37/3/2567" --19-3-2567--28/4/25
 			  print("UI.Lo")
 			  --
 -- กำหนดช่วงของตัวเลขที่ต้องการสุ่ม
-local minNumber = 1
+--[[local minNumber = 1
 local maxNumber = 2--3
 
 -- สุ่มเลข
 local randomNumber = math.random(minNumber, maxNumber)
-print("สุ่ม UI ได้ UI ที่:", randomNumber)
+print("สุ่ม UI ได้ UI ที่:", randomNumber)]]
 --[[spawn(function()
 	while wait() do 
 		for i = 1,255 do --255
@@ -80,7 +80,7 @@ print("สุ่ม UI ได้ UI ที่:", randomNumber)
 		end
 	end
 end)]] 
-if randomNumber == 1 then
+--[[if randomNumber == 1 then
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI 1 ทำงาน")
@@ -88,17 +88,39 @@ elseif randomNumber == 2 then
 	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
 	print("UI 2 ทำงาน")
-end
+end]] 
+
+_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
+_G.ColorWiat = Color3.fromRGB(30,12,12)
 local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
-if randomNumber == 1 or randomNumber == 2 then
-	
+
+--[[if randomNumber == 1 or randomNumber == 2 then
 else
 	print("UI ไม่ทำงาน")
 	--local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 	--print("ระบบได้เลือกอันเดิม") 
-end
+end]]
 
 print("library..Set")
+----------------------------------------------------------------------------------------------------------------------------------------------
+local Window = library:NaJa()
+
+local A = Window:Tab("Main:Autofarm","6022668898")
+local B = Window:Tab("AutoFarm:Stats","11155827783")
+local C = Window:Tab("Teleport : PvP","11162889532")
+local D = Window:Tab("Raid : Fruit","11155842453")
+local E = Window:Tab("Shop : L_22_","11156322986")
+
+local Main = A:Section("Main","Right")
+local Settings = A:Section("Other Auto Farm","Left")
+local L_15_ = B:Section("Automatics","Left")
+local L_17_ = B:Section("Stats","Right")
+local L_18_ = C:Section("Teleport","Left")
+local Combat = C:Section("PvP","Right")
+local L_20_ = D:Section("Raid","Left")
+local LLLL = D:Section("Fruit","Right")
+local L_22_ = E:Section("L_22_","Right")
+
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
 	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
 end
@@ -318,25 +340,7 @@ function SaveSettings()
 end
 
 LoadSettings()
-print("UI.Lo")
-----------------------------------------------------------------------------------------------------------------------------------------------
-local Window = library:NaJa()
 
-local A = Window:Tab("Main:Autofarm","6022668898")
-local B = Window:Tab("AutoFarm:Stats","11155827783")
-local C = Window:Tab("Teleport : PvP","11162889532")
-local D = Window:Tab("Raid : Fruit","11155842453")
-local E = Window:Tab("Shop : L_22_","11156322986")
-
-local Main = A:Section("Main","Right")
-local Settings = A:Section("Other Auto Farm","Left")
-local L_15_ = B:Section("Automatics","Left")
-local L_17_ = B:Section("Stats","Right")
-local L_18_ = C:Section("Teleport","Left")
-local Combat = C:Section("PvP","Right")
-local L_20_ = D:Section("Raid","Left")
-local LLLL = D:Section("Fruit","Right")
-local L_22_ = E:Section("L_22_","Right")
 local vu = game:GetService("VirtualUser")
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
