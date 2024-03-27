@@ -88,17 +88,16 @@ elseif randomNumber == 2 then
 	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
 	print("UI 2 ทำงาน")
+end
+
+if randomNumber == 1 or randomNumber == 2 then
+	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 else
-	--_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
-	--_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI ไม่ทำงาน")
 	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 	print("ระบบได้เลือกอันเดิม") 
 end
 
-if randomNumber == 1 or randomNumber == 2 then
-	local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
-end
 print("library..Set")
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
 	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
