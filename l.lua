@@ -7229,6 +7229,7 @@ Settings:Toggle("Tween to Quest",_G.Settings.TweentoQuest,function(a)
 		_G.NoTweentoQuest = true 
 		_G.TweentoQuest = false 
 	end
+	
 	SaveSettings()
 end)
 
