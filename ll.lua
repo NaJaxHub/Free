@@ -4132,7 +4132,6 @@ task.spawn(function()
 						if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
 							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
 						end
-						
 						if v.Humanoid.Health <= v.Humanoid.MaxHealth * 30/100 then 
 							Attack()
 							AttackXFunction()
@@ -7751,14 +7750,13 @@ end)
         end
     end)
 ]] 
-
---[[task.spawn(function()
+task.spawn(function()
 	while task.wait() do
 		pcall(function()
 			if BringMobFarm then
 				local questTarget = QuestCheck()[3]
 				for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
-					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 280 then
+					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
 						-- ตั้ง CFrame ของมอนเตอร์ให้ตรงกับตำแหน่งที่กำหนด
 						mob.HumanoidRootPart.CFrame = PosMon
 						
@@ -7780,7 +7778,6 @@ end)
 						sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius", math.huge)
 						
 						-- เปลี่ยนสถานะของ Humanoid เป็น Ragdoll
-						mob.Humanoid:ChangeState(11)
 						mob.Humanoid:ChangeState(12)
 					end
 				end
@@ -7788,14 +7785,13 @@ end)
 		end)
 	end
 end)
-]]
 
 spawn(function()
 	while task.wait() do
 		pcall(function()
 			if BringMobFarm then
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 500 then
+					if (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 600 then
 						if InMyNetWork(v.HumanoidRootPart) then
 							v.HumanoidRootPart.CFrame = PosMon
 							v.Humanoid.JumpPower = 0
@@ -7817,7 +7813,8 @@ spawn(function()
 		end)
 	end
 end)
-   spawn(function()
+
+   	spawn(function()
         while task.wait() do
 			if _G.Brimob and _G.Auto_Farm_Level then
             	pcall(function()
@@ -7832,17 +7829,16 @@ end)
 								v.Humanoid.Animator:Destroy()
 							end
 							sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-						elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position-PosMon.Position).Magnitude <= 289 then
-								v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-								v.HumanoidRootPart.CFrame = PosMon
-								v.Humanoid:ChangeState(8)
-								v.HumanoidRootPart.CanCollide = false
-								v.Head.CanCollide = false
-								if v.Humanoid:FindFirstChild("Animator") then
-									v.Humanoid.Animator:Destroy()
-								end
-								sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-							
+					elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position-PosMon.Position).Magnitude <= 289 then
+							v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+							v.HumanoidRootPart.CFrame = PosMon
+							v.Humanoid:ChangeState(8)
+							v.HumanoidRootPart.CanCollide = false
+							v.Head.CanCollide = false
+							if v.Humanoid:FindFirstChild("Animator") then
+								v.Humanoid.Animator:Destroy()
+							end
+							sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
 						end
                     end
                 end)
