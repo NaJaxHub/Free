@@ -1752,7 +1752,7 @@ coroutine.wrap(function()
         local activeControllerCHATGPT = getupvalue(CombatFrameworkCHATGPT, 2)['activeController']
         if _G.FastAttack3 and activeControllerCHATGPT and activeControllerCHATGPT.timeToNextAttack then
             activeControllerCHATGPT.timeToNextAttack = 0
-            activeControllerCHATGPT.hitboxMagnitude = 31
+            activeControllerCHATGPT.hitboxMagnitude = 35
             activeControllerCHATGPT:attack()
 			AttackFunction()  -- เรียกใช้ AttackFunction() ใน coroutine
         end
@@ -1858,7 +1858,7 @@ Attack = function()
 	if not ac or not ac.equipped then
 		return
 	end
-	if tick() - cdnormal > 1.5 then
+	if tick() - cdnormal > 0 then
 		ac:attack()
 		cdnormal = tick()
 	else
@@ -1967,6 +1967,117 @@ spawn(function()
     end
 end)
 
+function AttackPlayersFunctionNaJa()
+	local ac = CombatFrameworkR.activeController
+	if ac and ac.equipped then
+		for indexincrement = 1, 1 do
+			local bladehit = getAllBladeHits(60)
+			if #bladehit > 0 then
+				local AcAttack8 = debug.getupvalue(ac.attack, 5)
+				local AcAttack9 = debug.getupvalue(ac.attack, 6)
+				local AcAttack7 = debug.getupvalue(ac.attack, 4)
+				local AcAttack10 = debug.getupvalue(ac.attack, 7)
+				local NumberAc12 = (AcAttack8 * 798405 + AcAttack7 * 727595) % AcAttack9
+				local NumberAc13 = AcAttack7 * 798405
+				(function()
+					NumberAc12 = (NumberAc12 * AcAttack9 + NumberAc13) % 1099511627776
+					AcAttack8 = math.floor(NumberAc12 / AcAttack9)
+					AcAttack7 = NumberAc12 - AcAttack8 * AcAttack9
+				end)()
+				AcAttack10 = AcAttack10 + 1
+				debug.setupvalue(ac.attack, 5, AcAttack8)
+				debug.setupvalue(ac.attack, 6, AcAttack9)
+				debug.setupvalue(ac.attack, 4, AcAttack7)
+				debug.setupvalue(ac.attack, 7, AcAttack10)
+				for k, v in pairs(ac.animator.anims.basic) do
+					v:Play()
+				end                 
+				if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and ac.blades and ac.blades[1] then 
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(CurrentWeapon()))
+					game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, 2, "") 
+				end
+			end
+		end
+	end
+end
+function AttackFunctionNaJa()
+	local ac = CombatFrameworkR.activeController
+	if ac and ac.equipped then
+		for indexincrement = 1, 3 do -- ปรับจำนวนการเรียกใช้งานได้ตามต้องการ
+			local bladehit = getAllBladeHits(60)
+			if #bladehit > 0 then
+				local AcAttack8 = debug.getupvalue(ac.attack, 5)
+				local AcAttack9 = debug.getupvalue(ac.attack, 6)
+				local AcAttack7 = debug.getupvalue(ac.attack, 4)
+				local AcAttack10 = debug.getupvalue(ac.attack, 7)
+				local NumberAc12 = (AcAttack8 * 798405 + AcAttack7 * 727595) % AcAttack9
+				local NumberAc13 = AcAttack7 * 798405
+				(function()
+					NumberAc12 = (NumberAc12 * AcAttack9 + NumberAc13) % 1099511627776
+					AcAttack8 = math.floor(NumberAc12 / AcAttack9)
+					AcAttack7 = NumberAc12 - AcAttack8 * AcAttack9
+				end)()
+				AcAttack10 = AcAttack10 + 1
+				debug.setupvalue(ac.attack, 5, AcAttack8)
+				debug.setupvalue(ac.attack, 6, AcAttack9)
+				debug.setupvalue(ac.attack, 4, AcAttack7)
+				debug.setupvalue(ac.attack, 7, AcAttack10)
+				for k, v in pairs(ac.animator.anims.basic) do
+					v:Play(0.005, 0.005, 0.005) -- ลดเวลาการเล่นอนิเมชัน
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and ac.blades and ac.blades[1] then 
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(CurrentWeapon()))
+					game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, 2, "") 
+				end
+			end
+		end
+	end
+end
+
+task.spawn(function() 
+	while task.wait() do
+		if _G.FastAttack3 then 
+			pcall(function()
+				for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if v.Humanoid.Health > 0 then
+						if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+							repeat task.wait()
+								if v.Humanoid.Health <= v.Humanoid.MaxHealth * 50/100 then 
+									AttackPlayersFunctionNaJa()
+									AttackFunctionNaJa()
+									AttackFunction()
+									Attack()
+									Attack()
+									wait()
+									Boost()
+								else
+									AttackFunctionNaJa()
+									AttackFunction()
+									Attack()
+								end
+								AttackFunctionNaJa()
+								if SeraphFrame.activeController then
+									if v.Humanoid.Health > 0 then
+										SeraphFrame.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
+										SeraphFrame.activeController.timeToNextAttack = 0
+										SeraphFrame.activeController.focusStart = 0
+										SeraphFrame.activeController.hitboxMagnitude = 80
+										SeraphFrame.activeController.humanoid.AutoRotate = true
+										SeraphFrame.activeController.increment = 4
+									end
+								end
+								game:GetService 'VirtualUser':CaptureController()
+								game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
+							until not _G.Auto_Farm_Level or v.Humanoid.Health <= 0 or QuestC.Visible == false
+						end
+					end
+				end
+			end)
+		end
+	end
+end)
 -- KzSystem(getgenv().PCMode)| คุณใช้ PC ใช้มั้ย ใช้เปลี่ยนเป็น true แต่ถ้าคุณใช้มือถือเปลี่ยนเป็น false
 -- KzSystem(getgenv().UIHit)| ปิดการแสดงของ UI false ต้องการดูเปลี่ยนเป็น true
 
@@ -4129,23 +4240,34 @@ task.spawn(function()
 				QuestCheck()
 				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
-						EquipWeapon(_G.Select_Weapon)
-						if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
-							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-						end
-						if v.Humanoid.Health <= v.Humanoid.MaxHealth * 30/100 then 
-							Attack()
-							AttackXFunction()
-							FASTAttack()
-							if v.Humanoid.Health <= 0 then
-								v:Destroy()
+						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+							if v.Name == MobName then
+								if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+									repeat task.wait()
+										EquipWeapon(_G.Select_Weapon)
+										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+										end
+										if v.Humanoid.Health <= v.Humanoid.MaxHealth * 30/100 then 
+											Attack()
+											AttackXFunction()
+											FASTAttack()
+											if v.Humanoid.Health <= 0 then
+												v:Destroy()
+											end
+											_G.SuperFastAttack = true
+										else
+											_G.SuperFastAttack = false
+										end
+										game:GetService 'VirtualUser':CaptureController()
+										game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
+										if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 150 then
+											game:service("VirtualInputManager"):SendKeyEvent(true, "V", false, game) game:service("VirtualInputManager"):SendKeyEvent(false, "V", false, game)
+										end
+									until not _G.Auto_Farm_Level or v.Humanoid.Health <= 0 or QuestC.Visible == false
+								end
 							end
-							_G.SuperFastAttack = true
-						else
-							_G.SuperFastAttack = false
 						end
-						game:GetService 'VirtualUser':CaptureController()
-						game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
 					end
 				end
 			end)
@@ -4191,9 +4313,6 @@ end)
 												end
 												game:GetService 'VirtualUser':CaptureController() game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
 	v.Head.CanCollide = false v.Humanoid.WalkSpeed = 0 v.HumanoidRootPart.CanCollide = false v.HumanoidRootPart.Size = Vector3.new(80,80,80)
-												if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 150 then
-													game:service("VirtualInputManager"):SendKeyEvent(true, "V", false, game) game:service("VirtualInputManager"):SendKeyEvent(false, "V", false, game)
-												end
 										until not _G.Auto_Farm_Level or v.Humanoid.Health <= 0 or QuestC.Visible == false
 									end
 								end
