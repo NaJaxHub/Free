@@ -4143,11 +4143,8 @@ task.spawn(function()
 						else
 							_G.SuperFastAttack = false
 						end
-						BringMobFarm = true
 						game:GetService 'VirtualUser':CaptureController()
 						game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
-					else
-						BringMobFarm = false
 					end
 				end
 			end)
@@ -7754,51 +7751,16 @@ end)
     end)
 ]] 
 
-task.spawn(function()
-	while task.wait() do
-		pcall(function()
-			if BringMobFarm then
-				local questTarget = QuestCheck()[3]
-				for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
-					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 380 then
-						-- ตั้ง CFrame ของมอนเตอร์ให้ตรงกับตำแหน่งที่กำหนด
-						mob.HumanoidRootPart.CFrame = PosMon
-						
-						-- ปรับแต่งคุณสมบัติของมอนเตอร์
-						mob.Humanoid.JumpPower = 0
-						mob.Humanoid.WalkSpeed = 0
-						mob.Humanoid.NameDisplayDistance = 0
-						mob.HumanoidRootPart.Transparency = 1
-						mob.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-						mob.HumanoidRootPart.CanCollide = false
-						mob.Head.CanCollide = false
-						
-						-- ลบ Animator ออกหากมีอยู่
-						if mob.Humanoid:FindFirstChild("Animator") then
-							mob.Humanoid.Animator:Destroy()
-						end
-						
-						-- ปรับขอบเขตการจำลองของผู้เล่นให้มากพอสมควร
-						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-						sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius", math.huge)
-						
-						-- เปลี่ยนสถานะของ Humanoid เป็น Ragdoll
-						mob.Humanoid:ChangeState(12)
-					end
-				end
-			end
-		end)
-	end
-end)
 
 
 
---[[spawn(function() 
+
+spawn(function() 
 	while wait() do
 		pcall(function()
-			if BringMobFarm and _G.Brimob  then
+			if BringMobFarm then
 				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-					if v.Name == QuestCheck()[3] and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 200 then
+					if v.Name == QuestCheck()[3] and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 389 then
 						v.HumanoidRootPart.CFrame = PosMon
 						v.HumanoidRootPart.Size = Vector3.new(60,60,60)
 						v.HumanoidRootPart.Transparency = 1
@@ -7814,7 +7776,7 @@ end)
 			end
 		end)
 	end
-end)]]
+end)
 
 task.spawn(function()
 	while task.wait() do
