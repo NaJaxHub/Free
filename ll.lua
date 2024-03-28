@@ -1977,12 +1977,6 @@ end
 if game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit') then
     game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit'):Destroy()
 end
-if game:GetService("Players").LocalPlayer.PlayerGui.Welcome then
-	game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
-end
-
-
-
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 
@@ -11114,6 +11108,16 @@ spawn(function()
 		end
 	end
 end)
+
+local player = game:GetService("Players").LocalPlayer
+-- เช็กว่ามี GUI ชื่อ "Welcome" หรือไม่
+if player.PlayerGui:FindFirstChild("Welcome") then
+    -- ถ้ามี GUI ชื่อ "Welcome" ให้ทำการลบ
+    player.PlayerGui.Welcome:Destroy()
+    print("GUI ชื่อ 'Welcome' ถูกลบแล้ว")
+else
+    print("ไม่พบ GUI ชื่อ 'Welcome'")
+end
 
 print("/0/011/10/01/010101/101/010/1101/010/10/01/010/10/1//1/01/01/010/1010/")
 
