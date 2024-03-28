@@ -2062,6 +2062,39 @@ else
 	--
 	--print("ระบบได้เลือกอันเดิม") 
 end]]
+local player = game:GetService("Players").LocalPlayer
+-- เช็กว่ามี GUI ชื่อ "Welcome" หรือไม่
+if player.PlayerGui:FindFirstChild("Welcome") then
+    -- ถ้ามี GUI ชื่อ "Welcome" ให้ทำการลบ
+    player.PlayerGui.Welcome:Destroy()
+    print("GUI ชื่อ 'Welcome' ถูกลบแล้ว")
+else
+    print("ไม่พบ GUI ชื่อ 'Welcome'")
+end
+local replicatedStorage = game:GetService("ReplicatedStorage")
+
+-- เช็กว่ามีอ็อบเจ็กต์ "Effect" ใน ReplicatedStorage หรือไม่
+if replicatedStorage:FindFirstChild("Effect") then
+    local effect = replicatedStorage.Effect
+    
+    -- เช็กว่ามีอ็อบเจ็กต์ "Container" ใน "Effect" หรือไม่
+    if effect:FindFirstChild("Container") then
+        local container = effect.Container
+        
+        -- เช็กว่ามีอ็อบเจ็กต์ "Death" ใน "Container" หรือไม่
+        if container:FindFirstChild("Death") then
+            -- ถ้ามีอ็อบเจ็กต์ "Death" ให้ทำการลบ
+            container.Death:Destroy()
+            --print("อ็อบเจ็กต์ 'Death' ถูกลบแล้ว")
+        else
+            --print("ไม่พบอ็อบเจ็กต์ 'Death' ใน 'Container'")
+        end
+    else
+        --print("ไม่พบอ็อบเจ็กต์ 'Container' ใน 'Effect'")
+    end
+else
+    --print("ไม่พบอ็อบเจ็กต์ 'Effect' ใน ReplicatedStorage")
+end
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 
@@ -11307,39 +11340,7 @@ spawn(function()
 	end
 end)
 
-local player = game:GetService("Players").LocalPlayer
--- เช็กว่ามี GUI ชื่อ "Welcome" หรือไม่
-if player.PlayerGui:FindFirstChild("Welcome") then
-    -- ถ้ามี GUI ชื่อ "Welcome" ให้ทำการลบ
-    player.PlayerGui.Welcome:Destroy()
-    print("GUI ชื่อ 'Welcome' ถูกลบแล้ว")
-else
-    print("ไม่พบ GUI ชื่อ 'Welcome'")
-end
-local replicatedStorage = game:GetService("ReplicatedStorage")
 
--- เช็กว่ามีอ็อบเจ็กต์ "Effect" ใน ReplicatedStorage หรือไม่
-if replicatedStorage:FindFirstChild("Effect") then
-    local effect = replicatedStorage.Effect
-    
-    -- เช็กว่ามีอ็อบเจ็กต์ "Container" ใน "Effect" หรือไม่
-    if effect:FindFirstChild("Container") then
-        local container = effect.Container
-        
-        -- เช็กว่ามีอ็อบเจ็กต์ "Death" ใน "Container" หรือไม่
-        if container:FindFirstChild("Death") then
-            -- ถ้ามีอ็อบเจ็กต์ "Death" ให้ทำการลบ
-            container.Death:Destroy()
-            --print("อ็อบเจ็กต์ 'Death' ถูกลบแล้ว")
-        else
-            --print("ไม่พบอ็อบเจ็กต์ 'Death' ใน 'Container'")
-        end
-    else
-        --print("ไม่พบอ็อบเจ็กต์ 'Container' ใน 'Effect'")
-    end
-else
-    --print("ไม่พบอ็อบเจ็กต์ 'Effect' ใน ReplicatedStorage")
-end
 local replicatedStorage = game:GetService("ReplicatedStorage")
 
 -- เช็กว่ามีอ็อบเจ็กต์ "Assets" ใน ReplicatedStorage หรือไม่
