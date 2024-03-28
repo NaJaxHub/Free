@@ -7820,7 +7820,7 @@ end)
             	pcall(function()
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if BringMobFarm and (QuestCheck()[3] == "Factory Staff" or QuestCheck()[3] == "Monkey" or QuestCheck()[3] == "Yeti" or QuestCheck()[3] == "The Gorilla King" or QuestCheck()[3] == "Gorilla" or QuestCheck()[3] == "Dragon Crew Warrior" or QuestCheck()[3] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
-							v.HumanoidRootPart.Size = Vector3.new(77,77,77) --100
+							v.HumanoidRootPart.Size = Vector3.new(100,100,100) --100
                             v.HumanoidRootPart.CFrame = PosMon
                             v.Humanoid:ChangeState(12) --14
                             v.HumanoidRootPart.CanCollide = false
@@ -7830,7 +7830,7 @@ end)
 							end
 							sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
 					elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position-PosMon.Position).Magnitude <= 289 then
-							v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+							v.HumanoidRootPart.Size = Vector3.new(30,30,30)
 							v.HumanoidRootPart.CFrame = PosMon
 							v.Humanoid:ChangeState(8)
 							v.HumanoidRootPart.CanCollide = false
