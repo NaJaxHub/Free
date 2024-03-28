@@ -1174,13 +1174,13 @@ function Tween(...)
     local Speed
     local randomNumber = math.random(365, 380)
     if Distance < 256 then
-        Speed = 456
+        Speed = 500
     elseif Distance < 334 then
         Speed = 389
     elseif Distance < 556 then
         Speed = 378
-    elseif Distance < 801 then
-        Speed = 370
+    elseif Distance < 750 then
+        Speed = randomNumber
     elseif Distance >= 1000 then
         Speed = randomNumber
     end
@@ -1818,11 +1818,6 @@ spawn(function()
         end
     end
 end)
-local cdnormal = 0  -- เวลาคูลดาวน์
-
-local function getAllBladeHits(damage)
-    -- โค้ดเกี่ยวกับการสร้างการโจมตีหรือการโจมตีแบบละเอียดยิบ
-end
 
 local function AttackC()
     local ac = SeraphFrame.activeController
@@ -1839,27 +1834,6 @@ local function AttackC()
         game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getAllBladeHits(77), 3, "") -- ส่งสัญญาณโดยให้มีการเรียกใช้ฟังก์ชันที่มีความสมดุลกัน
     end
 end
-
-spawn(function()
-    while wait(0) do
-        if _G.FastAttack3 then
-            if b - tick() > -math.huge then
-                b = tick()
-            end
-            pcall(function()
-                local ac = SeraphFrame.activeController
-                if ac and ac.equipped then
-                    ac:AttackC()
-                    cdnormal = tick()
-                else
-                    Animation.AnimationId = ac.anims.basic[2]
-                    ac.humanoid:LoadAnimation(Animation):Play(1, 1)  -- เล่นอนิเมชันแบบเต็มรูปแบบ
-                    game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getAllBladeHits(77), 2, "") -- ส่งสัญญาณโดยให้มีการเรียกใช้ฟังก์ชันที่มีความสมดุลกัน
-                end
-            end)
-        end
-    end
-end)
 
 local Time = 1
 local AttackRandom = 2
@@ -4149,6 +4123,7 @@ end)
 task.spawn(function() 
 	while task.wait() do
 		if _G.Auto_Farm_Level then 
+			BringMobFarm = true
 			pcall(function()
 				QuestCheck()
 				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
@@ -4171,6 +4146,8 @@ task.spawn(function()
 						BringMobFarm = true
 						game:GetService 'VirtualUser':CaptureController()
 						game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
+					else
+						BringMobFarm = false
 					end
 				end
 			end)
@@ -4214,6 +4191,7 @@ function HandleQuestEnemies(questTarget, targetEnemy)
 					HandleQuestMovement(v)
 					HandleQuestActions(v)
 				end
+				v.HumanoidRootPart.CFrame = PosMon
 			until not _G.Auto_Farm_Level or v.Humanoid.Health <= 0 or not QuestC.Visible
 		end
 	end
@@ -4250,6 +4228,7 @@ end
 
 function HandleQuestActions(enemy)
 	BringMobFarm = true
+	enemy.HumanoidRootPart.CFrame = PosMon
 	enemy.Head.CanCollide = false
 	enemy.Humanoid.WalkSpeed = 0
 	enemy.HumanoidRootPart.CanCollide = false
@@ -4277,6 +4256,7 @@ end
 
 function HandleNonQuestEnemies()
 	_G.SuperFastAttack = false
+	BringMobFarm = false
 	Tween(PosMonLv)
 	UnEquipWeapon(_G.Select_Weapon)
 	if World2 and string.find(Name, "Ship") and (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude > 30000 then
