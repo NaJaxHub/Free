@@ -4198,16 +4198,18 @@ spawn(function()
 					for i , v in pairs(game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren()) do
 						if string.find(v.Name, MobName) then
 							_G.PosMonFarmLvSetCFarme = 1
-								repeat task.wait()
-									--if (v.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 1 and (v.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2500 then
-										PosMonLv = v.CFrame * CFrame.new(0,55,0)
-										task.wait(1)--1.5
-										_G.PosMonFarmLvSetCFarme = 2
-										task.wait(0.05)
-									--end
-								until not _G.Auto_Farm_Level or _G.PosMonFarmLvSetCFarme == 2
+							repeat task.wait()
+									PosMonLv = v.CFrame * CFrame.new(0,55,0)
+									task.wait(1)--1.5
+									_G.PosMonFarmLvSetCFarme = 2
+									task.wait(0.05)
+							until not _G.Auto_Farm_Level or _G.PosMonFarmLvSetCFarme == 2
+						else
+							PosMonLv = MobCFrame
 						end
 					end
+				else
+					PosMonLv = MobCFrame
 				end
 			end)
 		end
@@ -7894,11 +7896,11 @@ spawn(function()
 		pcall(function()
 			if BringMobFarm then
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 350 then
+					if (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 280 then
 							v.HumanoidRootPart.CFrame = PosMon
 							v.Humanoid.JumpPower = 0
 							v.Humanoid.WalkSpeed = 0
-							v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+							v.HumanoidRootPart.Size = Vector3.new(45,45,45)
 							v.HumanoidRootPart.Transparency = 1
 							v.HumanoidRootPart.CanCollide = false
 							v.Head.CanCollide = false
