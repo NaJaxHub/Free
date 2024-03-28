@@ -511,38 +511,38 @@ local function QuestCheck()
 			end
 		end
 	end 
-	if Lvl >= 375 and Lvl <= 399 then -- Fishman Warrior
+	if Lvl == 375 and Lvl <= 399 then -- Fishman Warrior
 		NPCPosition = CFrame.new(61122.5625, 18.4716396, 1568.16504, 0.893533468, 3.95251609e-09, 0.448996574, -2.34327455e-08, 1, 3.78297464e-08, -0.448996574, -4.43233645e-08, 0.893533468)
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-		return
+			return
 		end
 	end
 
-	if Lvl >= 400 and Lvl <= 449 then -- Fishman Commando
+	if Lvl == 400 and Lvl <= 449 then -- Fishman Commando
 		NPCPosition = CFrame.new(61122.5625, 18.4716396, 1568.16504, 0.893533468, 3.95251609e-09, 0.448996574, -2.34327455e-08, 1, 3.78297464e-08, -0.448996574, -4.43233645e-08, 0.893533468)
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-		return
+			return
 		end
 	end
-	if Lvl >= 450 and Lvl <= 524 then -- Shanda
+	if Lvl == 450 and Lvl <= 524 then -- Shanda
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 4500 then
 			--bBTPP(NPCPosition) 
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
 	end
-		if Lvl >= 525 and Lvl <= 549 then -- Royal Squad 
+	if Lvl == 525 and Lvl <= 549 then -- Royal Squad 
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
 			--bBTPP(NPCPosition) 
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-		return
+			return
 		end
 	end
-		if Lvl >= 550 and Lvl <= 624 then -- Royal Squad 
+	if Lvl == 550 and Lvl <= 624 then -- Royal Squad 
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-		return
+			return
 		end
 	end
 	
@@ -584,6 +584,21 @@ local function QuestCheck()
 		Mon = "Dangerous Prisoner"
 		LevelRequire = 210
 		NPCPosition = CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
+	elseif QuestName == "FishmanQuest" then
+		NPCPosition = CFrame.new(61121.1094, 17.953125, 1564.52637, -0.913477898, 0, -0.406888306, 0, 1, 0, 0.406888306, 0, -0.913477898)
+		QuestName = "FishmanQuest"
+		if QuestLevel == 1 then
+			LevelRequire = 375
+			MobName = "Fishman Warrior"
+			Mon = "Fishman Warrior"
+		elseif QuestLevel == 2 then
+			LevelRequire = 400
+			MobName = "Fishman Commando"
+			Mon = "Fishman Commando"
+		end
+		if (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+		end
 	elseif QuestName == "SkyExp1Quest" then
 		if QuestLevel == 1 then
 			NPCPosition = CFrame.new(-4721.88867, 843.874695, -1949.96643, 0.996191859, -0, -0.0871884301, 0, 1, -0, 0.0871884301, 0, 0.996191859)
@@ -4341,12 +4356,14 @@ end)
 							_G.SuperFastAttack = false
 							Tween(PosMonLv) 
 							UnEquipWeapon(_G.Select_Weapon)
-							if World2 and string.find(Name, "Ship") and (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
-								if Modstween then Modstween:Stop() end
-								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
-							elseif World2 and not string.find(Name, "Ship") and (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
-								if Modstween then Modstween:Stop() end
-								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-6508.5581054688, 89.034996032715, -132.83953857422))
+							if World1 and (MobName == "Fishman Commando" or MobName == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+							elseif World1 and not (MobName == "Fishman Commando" or MobName == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.8515625, 6.6796875, - 1926.7841796875))
+							elseif World2 and string.find(MobName, "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
+							elseif World2 and not string.find(MobName, "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(- 6508.5581054688, 89.034996032715, - 132.83953857422))
 							end
 						end
 					else
