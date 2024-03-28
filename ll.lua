@@ -4152,23 +4152,26 @@ task.spawn(function()
 		end
 	end
 end)
-
+	
 	task.spawn(function() 
 		while task.wait() do
 			if _G.Auto_Farm_Level then 
 				pcall(function()
 					QuestCheck()
+					local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+					if not string.find(QuestTitle, MobName) then
+						game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
+					end
 					local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 					if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 						if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 								if v.Name == MobName then
 									if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-										repeat task.wait() EquipWeapon(_G.Select_Weapon)
-											local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-											if not string.find(QuestTitle, MobName) then
-												game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
-											else
+										repeat
+											task.wait()
+											EquipWeapon(_G.Select_Weapon)
+												BringMobFarm = true
 												PosMon = v.HumanoidRootPart.CFrame
 												if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
 													if v.Humanoid.Health <= v.Humanoid.MaxHealth * 40/100 then 
@@ -4176,9 +4179,9 @@ end)
 														AttackXFunction()
 														FASTAttack()
 														_G.SuperFastAttack = true
-														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * PosOdslob * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
+														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * PosOdslob-- * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
 													else
-														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0) * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
+														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)-- * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
 														_G.SuperFastAttack = false
 													end
 												else
@@ -4187,12 +4190,10 @@ end)
 													game:GetService 'VirtualUser':CaptureController() game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
 												end
 												game:GetService 'VirtualUser':CaptureController() game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
-												BringMobFarm = true
 	v.Head.CanCollide = false v.Humanoid.WalkSpeed = 0 v.HumanoidRootPart.CanCollide = false v.HumanoidRootPart.Size = Vector3.new(80,80,80)
 												if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 150 then
 													game:service("VirtualInputManager"):SendKeyEvent(true, "V", false, game) game:service("VirtualInputManager"):SendKeyEvent(false, "V", false, game)
 												end
-											end
 										until not _G.Auto_Farm_Level or v.Humanoid.Health <= 0 or QuestC.Visible == false
 									end
 								end
@@ -7793,7 +7794,6 @@ spawn(function()
 			if BringMobFarm then
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
 					if (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 600 then
-						if InMyNetWork(v.HumanoidRootPart) then
 							v.HumanoidRootPart.CFrame = PosMon
 							v.Humanoid.JumpPower = 0
 							v.Humanoid.WalkSpeed = 0
@@ -7807,7 +7807,6 @@ spawn(function()
 							v.Humanoid:ChangeState(11)
 							v.Humanoid:ChangeState(14)
 							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
-						end
 					end
 				end
 			end
