@@ -44,7 +44,7 @@ if game:IsLoaded() then
 end 
 ]]
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
+
 loadstring(game:HttpGet("https://pastebin.com/raw/vkramXJj"))()
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -2088,7 +2088,7 @@ end
 
 
 
-
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 
 print("library..Set")
 
