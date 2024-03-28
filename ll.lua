@@ -4123,8 +4123,8 @@ end)
 task.spawn(function() 
 	while task.wait() do
 		if _G.Auto_Farm_Level then 
-			BringMobFarm = true
 			pcall(function()
+				PosMon = v.HumanoidRootPart.CFrame
 				QuestCheck()
 				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
@@ -4132,6 +4132,7 @@ task.spawn(function()
 						if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
 							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
 						end
+						
 						if v.Humanoid.Health <= v.Humanoid.MaxHealth * 30/100 then 
 							Attack()
 							AttackXFunction()
@@ -4198,7 +4199,7 @@ end)
 							end
 						else
 							_G.SuperFastAttack = false
-							Tween(PosMonLv)
+							Tween(PosMonLv) 
 							UnEquipWeapon(_G.Select_Weapon)
 							if World2 and string.find(Name, "Ship") and (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
 								if Modstween then Modstween:Stop() end
@@ -7751,26 +7752,35 @@ end)
     end)
 ]] 
 
-
-
-
-
-spawn(function() 
-	while wait() do
+task.spawn(function()
+	while task.wait() do
 		pcall(function()
 			if BringMobFarm then
-				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-					if v.Name == QuestCheck()[3] and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 389 then
-						v.HumanoidRootPart.CFrame = PosMon
-						v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-						v.HumanoidRootPart.Transparency = 1
-						v.Humanoid.JumpPower = 0
-						v.Humanoid.WalkSpeed = 0
-						v.HumanoidRootPart.CanCollide = false
-						v.Head.CanCollide = false
-						v.Humanoid:ChangeState(11)
-						v.Humanoid:ChangeState(14)
-						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
+				local questTarget = QuestCheck()[3]
+				for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 355 then
+						-- ตั้ง CFrame ของมอนเตอร์ให้ตรงกับตำแหน่งที่กำหนด
+						mob.HumanoidRootPart.CFrame = PosMon
+						
+						-- ปรับแต่งคุณสมบัติของมอนเตอร์
+						mob.Humanoid.JumpPower = 0
+						mob.Humanoid.WalkSpeed = 0
+						mob.Humanoid.NameDisplayDistance = 0
+						mob.HumanoidRootPart.Size = Vector3.new(77, 77, 77)
+						mob.HumanoidRootPart.CanCollide = false
+						mob.Head.CanCollide = false
+						
+						-- ลบ Animator ออกหากมีอยู่
+						if mob.Humanoid:FindFirstChild("Animator") then
+							mob.Humanoid.Animator:Destroy()
+						end
+						
+						-- ปรับขอบเขตการจำลองของผู้เล่นให้มากพอสมควร
+						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+						sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius", math.huge)
+						
+						-- เปลี่ยนสถานะของ Humanoid เป็น Ragdoll
+						mob.Humanoid:ChangeState(12)
 					end
 				end
 			end
@@ -7778,37 +7788,38 @@ spawn(function()
 	end
 end)
 
-task.spawn(function()
-	while task.wait() do
-		if _G.Brimob and _G.Auto_Farm_Level then
-			pcall(function()
-				for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-					if BringMobFarm and (QuestCheck()[3] == "Factory Staff" or QuestCheck()[3] == "Monkey" or QuestCheck()[3] == "Yeti" or QuestCheck()[3] == "The Gorilla King" or QuestCheck()[3] == "Gorilla" or QuestCheck()[3] == "Dragon Crew Warrior" or QuestCheck()[3] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 380 then
-						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60) --100
-						v.HumanoidRootPart.CFrame = PosMon
-						v.Humanoid:ChangeState(14) --14
-						v.HumanoidRootPart.CanCollide = false
-						v.Head.CanCollide = false
-						if v.Humanoid:FindFirstChild("Animator") then
-							v.Humanoid.Animator:Destroy()
+   spawn(function()
+        while task.wait() do
+			if _G.Brimob and _G.Auto_Farm_Level then
+            	pcall(function()
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if BringMobFarm and (QuestCheck()[3] == "Factory Staff" or QuestCheck()[3] == "Monkey" or QuestCheck()[3] == "Yeti" or QuestCheck()[3] == "The Gorilla King" or QuestCheck()[3] == "Gorilla" or QuestCheck()[3] == "Dragon Crew Warrior" or QuestCheck()[3] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
+							v.HumanoidRootPart.Size = Vector3.new(77,77,77) --100
+                            v.HumanoidRootPart.CFrame = PosMon
+                            v.Humanoid:ChangeState(12) --14
+                            v.HumanoidRootPart.CanCollide = false
+                            v.Head.CanCollide = false
+							if v.Humanoid:FindFirstChild("Animator") then
+								v.Humanoid.Animator:Destroy()
+							end
+							sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+						elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position-PosMon.Position).Magnitude <= 289 then
+								v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+								v.HumanoidRootPart.CFrame = PosMon
+								v.Humanoid:ChangeState(8)
+								v.HumanoidRootPart.CanCollide = false
+								v.Head.CanCollide = false
+								if v.Humanoid:FindFirstChild("Animator") then
+									v.Humanoid.Animator:Destroy()
+								end
+								sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+							
 						end
-						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-					elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 380 then
-						v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-						v.HumanoidRootPart.CFrame = PosMon
-						v.Humanoid:ChangeState(11)
-						v.HumanoidRootPart.CanCollide = false
-						v.Head.CanCollide = false
-						if v.Humanoid:FindFirstChild("Animator") then
-							v.Humanoid.Animator:Destroy()
-						end
-						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-					end
-				end
-			end)
-		end
-	end
-end)
+                    end
+                end)
+            end
+        end
+    end)
 
 
 --[[task.spawn(function()
