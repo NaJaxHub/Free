@@ -4168,6 +4168,7 @@ task.spawn(function()
 						else
 							_G.SuperFastAttack = false
 						end
+						BringMobFarm = true
 						game:GetService 'VirtualUser':CaptureController()
 						game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
 					end
@@ -7915,8 +7916,7 @@ task.spawn(function()
 						sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius", math.huge)
 						
 						-- เปลี่ยนสถานะของ Humanoid เป็น Ragdoll
-						mob.Humanoid:ChangeState(11)
-						mob.Humanoid:ChangeState(14)
+						mob.Humanoid:ChangeState(12)
 					end
 				end
 			end
