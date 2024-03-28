@@ -45,7 +45,7 @@ end
 ]]
 
 loadstring(game:HttpGet("https://pastebin.com/raw/vkramXJj"))()
-
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -2068,7 +2068,7 @@ end]]
 --[[_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 _G.ColorWiat = Color3.fromRGB(30,12,12)
 local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()]]
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
+
 --[[if randomNumber == 1 or randomNumber == 2 then
 else
 	print("UI ไม่ทำงาน")
@@ -2082,11 +2082,9 @@ end
 if game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit') then
     game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit'):Destroy()
 end
-if game:GetService("Players").LocalPlayer.PlayerGui.Welcome then
-	game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
-end
-game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
 
+game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
+game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
 print("library..Set")
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
