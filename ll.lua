@@ -1819,13 +1819,12 @@ spawn(function()
     end
 end)
 
-local function AttackC()
-    local ac = SeraphFrame.activeController
+local function Attack()
+    local ac = RigControllerR.activeController
     if not ac or not ac.equipped then
         return
     end
-    
-    if tick() - cdnormal > -math.huge then  -- ปรับเวลาคูลดาวน์ลงมาเหมาะสม
+    if tick() - cdnormal > 0.1 then  -- ปรับเวลาคูลดาวน์ลงมาเหมาะสม
         ac:Attack()
         cdnormal = tick()
     else
@@ -2036,7 +2035,9 @@ else
 	--
 	--print("ระบบได้เลือกอันเดิม") 
 end]]
-wait(.05)
+
+wait(1)
+
 local player = game:GetService("Players").LocalPlayer
 -- เช็กว่ามี GUI ชื่อ "Welcome" หรือไม่
 if player.PlayerGui:FindFirstChild("Welcome") then
