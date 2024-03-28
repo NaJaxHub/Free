@@ -43,7 +43,10 @@ if game:IsLoaded() then
         until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death")
 end 
 ]]
+
 loadstring(game:HttpGet("https://pastebin.com/raw/vkramXJj"))()
+
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -2079,7 +2082,11 @@ end
 if game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit') then
     game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit'):Destroy()
 end
-Gui:Destroy()
+if game:GetService("Players").LocalPlayer.PlayerGui.Welcome then
+	game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
+end
+game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
+
 print("library..Set")
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
