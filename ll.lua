@@ -2036,6 +2036,7 @@ else
 	--
 	--print("ระบบได้เลือกอันเดิม") 
 end]]
+wait(.05)
 local player = game:GetService("Players").LocalPlayer
 -- เช็กว่ามี GUI ชื่อ "Welcome" หรือไม่
 if player.PlayerGui:FindFirstChild("Welcome") then
@@ -4124,7 +4125,6 @@ task.spawn(function()
 	while task.wait() do
 		if _G.Auto_Farm_Level then 
 			pcall(function()
-				PosMon = v.HumanoidRootPart.CFrame
 				QuestCheck()
 				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
@@ -7752,13 +7752,13 @@ end)
     end)
 ]] 
 
-task.spawn(function()
+--[[task.spawn(function()
 	while task.wait() do
 		pcall(function()
 			if BringMobFarm then
 				local questTarget = QuestCheck()[3]
 				for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
-					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 355 then
+					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 280 then
 						-- ตั้ง CFrame ของมอนเตอร์ให้ตรงกับตำแหน่งที่กำหนด
 						mob.HumanoidRootPart.CFrame = PosMon
 						
@@ -7780,6 +7780,7 @@ task.spawn(function()
 						sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius", math.huge)
 						
 						-- เปลี่ยนสถานะของ Humanoid เป็น Ragdoll
+						mob.Humanoid:ChangeState(11)
 						mob.Humanoid:ChangeState(12)
 					end
 				end
@@ -7787,7 +7788,35 @@ task.spawn(function()
 		end)
 	end
 end)
+]]
 
+spawn(function()
+	while task.wait() do
+		pcall(function()
+			if BringMobFarm then
+				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 500 then
+						if InMyNetWork(v.HumanoidRootPart) then
+							v.HumanoidRootPart.CFrame = PosMon
+							v.Humanoid.JumpPower = 0
+							v.Humanoid.WalkSpeed = 0
+							v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+							v.HumanoidRootPart.Transparency = 1
+							v.HumanoidRootPart.CanCollide = false
+							v.Head.CanCollide = false
+							if v.Humanoid:FindFirstChild("Animator") then
+								v.Humanoid.Animator:Destroy()
+							end
+							v.Humanoid:ChangeState(11)
+							v.Humanoid:ChangeState(14)
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
+						end
+					end
+				end
+			end
+		end)
+	end
+end)
    spawn(function()
         while task.wait() do
 			if _G.Brimob and _G.Auto_Farm_Level then
