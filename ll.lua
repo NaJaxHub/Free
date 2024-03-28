@@ -1971,13 +1971,6 @@ else
 	--print("ระบบได้เลือกอันเดิม") 
 end]]
 
-if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
-	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-end
-if game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit') then
-    game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit'):Destroy()
-end
-
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
 
 print("library..Set")
@@ -11118,7 +11111,55 @@ if player.PlayerGui:FindFirstChild("Welcome") then
 else
     print("ไม่พบ GUI ชื่อ 'Welcome'")
 end
+local replicatedStorage = game:GetService("ReplicatedStorage")
 
+-- เช็กว่ามีอ็อบเจ็กต์ "Effect" ใน ReplicatedStorage หรือไม่
+if replicatedStorage:FindFirstChild("Effect") then
+    local effect = replicatedStorage.Effect
+    
+    -- เช็กว่ามีอ็อบเจ็กต์ "Container" ใน "Effect" หรือไม่
+    if effect:FindFirstChild("Container") then
+        local container = effect.Container
+        
+        -- เช็กว่ามีอ็อบเจ็กต์ "Death" ใน "Container" หรือไม่
+        if container:FindFirstChild("Death") then
+            -- ถ้ามีอ็อบเจ็กต์ "Death" ให้ทำการลบ
+            container.Death:Destroy()
+            --print("อ็อบเจ็กต์ 'Death' ถูกลบแล้ว")
+        else
+            --print("ไม่พบอ็อบเจ็กต์ 'Death' ใน 'Container'")
+        end
+    else
+        --print("ไม่พบอ็อบเจ็กต์ 'Container' ใน 'Effect'")
+    end
+else
+    --print("ไม่พบอ็อบเจ็กต์ 'Effect' ใน ReplicatedStorage")
+end
+local replicatedStorage = game:GetService("ReplicatedStorage")
+
+-- เช็กว่ามีอ็อบเจ็กต์ "Assets" ใน ReplicatedStorage หรือไม่
+local assets = replicatedStorage:FindFirstChild("Assets")
+if assets then
+    -- เช็กว่ามีอ็อบเจ็กต์ "SlashHit" ใน "Assets" หรือไม่
+    local slashHit = assets:FindFirstChild("SlashHit")
+    if slashHit then
+        -- ถ้ามีอ็อบเจ็กต์ "SlashHit" ให้ทำการลบ
+        slashHit:Destroy()
+        --print("อ็อบเจ็กต์ 'SlashHit' ถูกลบแล้ว")
+    else
+        --print("ไม่พบอ็อบเจ็กต์ 'SlashHit' ใน 'Assets'")
+    end
+else
+    --print("ไม่พบอ็อบเจ็กต์ 'Assets' ใน ReplicatedStorage")
+end
+
+--if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+--	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+--end
+
+--if game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit') then
+--    game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit'):Destroy()
+--end
 print("/0/011/10/01/010101/101/010/1101/010/10/01/010/10/1//1/01/01/010/1010/")
 
 gPlaceId = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
