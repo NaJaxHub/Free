@@ -2082,9 +2082,15 @@ end
 if game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit') then
     game:GetService("ReplicatedStorage").Assets:FindFirstChild('SlashHit'):Destroy()
 end
+if game:GetService("Players").LocalPlayer.PlayerGui.Welcome then
+	game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
+end
 
-game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
-game:GetService("Players").LocalPlayer.PlayerGui.Welcome:Destroy()
+
+
+
+
+
 print("library..Set")
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
