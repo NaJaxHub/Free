@@ -496,17 +496,17 @@ local function QuestCheck()
 		end
 	end
 	if Lvl >= 450 and Lvl <= 524 then -- Shanda
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
+		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 15000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
 	end
 		if Lvl >= 525 and Lvl <= 549 then -- Royal Squad 
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
+		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 7000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
 	end
 		if Lvl >= 550 and Lvl <= 624 then -- Royal Squad 
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
+		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 7000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
 	end
@@ -4203,6 +4203,7 @@ spawn(function()
 										PosMonLv = v.CFrame * CFrame.new(0,55,0)
 										task.wait(1)--1.5
 										_G.PosMonFarmLvSetCFarme = 2
+										task.wait(0.05)
 									--end
 								until not _G.Auto_Farm_Level or _G.PosMonFarmLvSetCFarme == 2
 						end
@@ -4317,8 +4318,7 @@ end)
 							Tween(QuestCheck()[2])
 							if (QuestCheck()[2].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 then
 								BringMobFarm = false
-								wait(0.2)
-								game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5) 
+								game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1])
 								Tween(QuestCheck()[7][1] * CFrame.new(0,28,8))
 							end
 						else
