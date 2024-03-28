@@ -459,35 +459,36 @@ local function QuestCheck()
 			[7] = MobCFrame
 		}
 	end
-	if Lvl >= 210 and Lvl <= 249 then
-		MobName = "Dangerous Prisoner"
-		QuestName = "PrisonerQuest"
-		QuestLevel = 2
-		Mon = "Dangerous Prisoner"
-		NPCPosition = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)
-		local matchingCFrames = {}
-		local result = string.gsub(MobName, "Lv. ", "")
-		local result2 = string.gsub(result, "[%[%]]", "")
-		local result3 = string.gsub(result2, "%d+", "")
-		local result4 = string.gsub(result3, "%s+", "")
+	--if Lvl == 210 and Lvl <= 249 then
+	--	MobName = "Dangerous Prisoner"
+	--	QuestName = "PrisonerQuest"
+	--	QuestLevel = 2
+	--	Mon = "Dangerous Prisoner"
+	--	NPCPosition = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)
+		--local matchingCFrames = {}
+		--local result = string.gsub(MobName, "Lv. ", "")
+		--local result2 = string.gsub(result, "[%[%]]", "")
+		--local result3 = string.gsub(result2, "%d+", "")
+		--local result4 = string.gsub(result3, "%s+", "")
 		
-		for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
-			if v.Name == result4 then
-				table.insert(matchingCFrames, v.CFrame)
-			end
-			MobCFrame = matchingCFrames
-		end
-		return {
-			[1] = QuestLevel,
-			[2] = NPCPosition,
-			[3] = MobName,
-			[4] = QuestName,
-			[5] = LevelRequire,
-			[6] = Mon,
-			[7] = MobCFrame
-		}
-	end
-	
+		--for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
+		--	if v.Name == result4 then
+		--		table.insert(matchingCFrames, v.CFrame)
+		--	end
+		--	MobCFrame = matchingCFrames
+		--end
+		--return {
+		--	[1] = QuestLevel,
+		--	[2] = NPCPosition,
+		--	[3] = MobName,
+		--	[4] = QuestName,
+		--	[5] = LevelRequire,
+		--	[6] = Mon,
+		--	[7] = MobCFrame
+		--}
+	--end
+
+
 	--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
 	local GuideModule = require(game:GetService("ReplicatedStorage").GuideModule)
 	local Quests = require(game:GetService("ReplicatedStorage").Quests)
@@ -509,7 +510,7 @@ local function QuestCheck()
 				end
 			end
 		end
-	end
+	end 
 	if Lvl >= 375 and Lvl <= 399 then -- Fishman Warrior
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
@@ -556,13 +557,13 @@ local function QuestCheck()
 		MobName = "Chief Petty Officer"
 		Mon = "Chief Petty Officer"
 		LevelRequire = 120
-	elseif QuestName == "ImpelQuest" then
+	elseif QuestName == "PrisonerQuest" then
 		QuestName = "PrisonerQuest"
 		QuestLevel = 2
 		MobName = "Dangerous Prisoner"
 		Mon = "Dangerous Prisoner"
 		LevelRequire = 210
-		NPCPosition = CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
+		NPCPosition = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)--CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
 	elseif QuestName == "SkyExp1Quest" then
 		if QuestLevel == 1 then
 			NPCPosition = CFrame.new(-4721.88867, 843.874695, -1949.96643, 0.996191859, -0, -0.0871884301, 0, 1, -0, 0.0871884301, 0, 0.996191859)
