@@ -1109,92 +1109,142 @@ function bBTPP(xxxxx)
 		until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
 	end
 end
+local function HandleNoclip()
+	if _G.Auto_Farm_Levelx  or _G.Settings.Auto_Farm_Boss_Hallow or _G.Settings.Auto_Farm_Bone or _G.Settings.Auto_Buddy_Swords or _G.Settings.Auto_Cake_Prince or _G.AutoFactory or _G.Settings.Auto_Raids or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids_Kill_Mon or _G.AutoFarmBounty or _G.Safe_Mode or _G.Auto_Kill_Ply or _G.TeleportPly or getgenv().AutoObservation or getgenv().Auto_Farm_Chest or getgenv().FarmChestTween or getgenv().ChestFarm or _G.Evo_Race_V2 or _G.Auto_Dark_Coat or _G.Auto_Farm_law_Sword or _G.Auto_Bartilo_Quest or _G.Auto_New_World2 or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids or _G.Auto_Farm_Level or _G.AutoObservation or _G.TPNPCDF or _G.Auto_Kill_Player or AutoFarmMaterial or _G.AutoBuddySwords or _G.AutoCavander or _G.Bboat or _G.TPTOBOAT or _G.AutoEvent or _G.QRepairBoat or _G.QRepairBoat2 or _G.WoodPlank or _G.AutoMirageIsland or _G.Auto_Gear or _G.TptoKisuneIsland  or _G.NeareastFarm or _G.TptoKisuneshrine or _G.AutoFarmBossHallow or _G.Auto_Yama or _G.Auto_Sea_King or _G.Auto_Dack_Coat or _G.Auto_Rip_Indar or _G.Auto_Farm_Mastery_Gun or _G.Auto_Farm_All_Sword or _G.Auto_Awakening_One_Quest or _G.Auto_Lever_UnLock or _G.Auto_Complete_Trial or _G.Auto_Farm_Mastery_Fruit or Auto_Mirage_Island or Auto_Gear or _G.Auto_Farm_All_Boss or _G.Auto_New_World or _G.Auto_Third_World or _G.Auto_Farm_Chest or _G.Auto_Farm_Boss or _G.Auto_Castle_Raid or _G.Auto_Elite_Hunter or _G.Auto_Cake_Prince or _G.Auto_Farm_All_Boss or _G.Auto_Saber or _G.Auto_Pole or _G.Auto_Farm_Scrap_and_Leather or _G.Auto_Farm_Angel_Wing or _G.Auto_Factory_Farm or _G.Auto_Farm_Ectoplasm or _G.Auto_Bartilo_Quest or _G.Auto_Rengoku or _G.Auto_Farm_Radioactive or _G.Auto_Farm_Vampire_Fang or _G.Auto_Farm_Mystic_Droplet or _G.Auto_Farm_GunPowder or _G.Auto_Farm_Dragon_Scales or _G.Auto_Evo_Race_V2 or _G.Auto_Swan_Glasses or _G.Auto_Dragon_Trident or _G.Auto_Soul_Reaper or _G.Auto_Farm_Fish_Tail or _G.Auto_Farm_Mini_Tusk or _G.Auto_Farm_Magma_Ore or _G.Auto_Farm_Bone or _G.Auto_Farm_Conjured_Cocoa or _G.Auto_Open_Dough_Dungeon or _G.Auto_Rainbow_Haki or _G.Auto_Musketeer_Hat or _G.Auto_Holy_Torch or _G.Auto_Canvander or _G.Auto_Twin_Hook or _G.Auto_Serpent_Bow or _G.Auto_Fully_Death_Step or _G.Auto_Fully_SharkMan_Karate or _G.Teleport_to_Player or _G.Auto_Kill_Player_Melee or _G.Auto_Kill_Player_Gun or _G.Start_Tween_Island or _G.Auto_Next_Island or _G.Auto_Kill_Law then
+		if not game.Workspace:FindFirstChild("Part") then
+			local Part = Instance.new("Part")
+			Part.Name = "Part"
+			Part.Parent = game.Workspace
+			Part.Anchored = true
+			Part.Transparency = 1
+			Part.Size = Vector3.new(50, 0.5, 50)
+		else
+			game.Workspace.Part.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.8, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+		end
+		if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+			local Noclip = Instance.new("BodyVelocity")
+			Noclip.Name = "BodyClip"
+			Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+			Noclip.MaxForce = Vector3.new(100000, 100000, 100000)
+			Noclip.Velocity = Vector3.new(0, 0, 0)
+		end
+		for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.CanCollide = false
+			end
+		end
+	else
+		if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+			game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+		end
+	end
+end
+
+spawn(function()
+	while true do
+		wait() -- หยุดการทำงานเพื่อให้สิ่งที่เป็นตัวเลขกับบิตของคอมพิวเตอร์ได้เข้าคิวตามที่เข้าใจได้ดีขึ้น
+		HandleNoclip()
+	end
+end)
+
 function Tween(...)
-	local RealtargetPos = {...}
-	local targetPos = RealtargetPos[1]
-	local p
-	if type(targetPos) == "vector" then
-		p = CFrame.new(targetPos)
-	elseif type(targetPos) == "userdata" then
-		p = targetPos
-	elseif type(targetPos) == "number" then
-		p = CFrame.new(unpack(RealtargetPos))
-	end
-	if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health == 0 then
-		if tween then
-			tween:Cancel()
-		end
-		repeat
-			wait()
-		until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0;
-	end
-	if game:GetService("Players").LocalPlayer:DistanceFromCharacter(p.Position) <= 50 then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = p
-	end
-	local tweenfunc = {}
-	local Distance = (p.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
-	local U = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude
-	local z = game:service("TweenService")
-	if Distance < 250 then
-		Speed = 456
-	elseif Distance < 330 then
-		Speed = 425
-	elseif Distance < 550 then
-		Speed = 375
-	elseif Distance < 800 then
-		Speed = 369
-	elseif Distance >= 1500 then
-		Speed = 360
-	end
-	local B = TweenInfo.new((p.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude/Speed,Enum.EasingStyle.Linear)--425
-	local S,g = pcall(function()
-	local q = z:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"],B,{CFrame = p})
-		q:Play()
-	end)
-	if _G.Settings.Bypass then
-		if Distance > 3000 and not AutoFarmMaterial and not _G.Settings.Auto_God_Human and not _G.Settings.Auto_Raids and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
-			pcall(function()
-				tween:Cancel()
-				fkwarp = false
-				if game:GetService("Players")["LocalPlayer"].Data:FindFirstChild("spawnPoint").Value == tostring(GetIsLand(p)) then 
-					wait(.1)
-					Com("F_", "TeleportTospawn")
-				elseif game:GetService("Players")["LocalPlayer"].Data:FindFirstChild("LastspawnPoint").Value == tostring(GetIsLand(p)) then
-					game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(15)
-					wait(0.1)
-					repeat
-						wait()
-					until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
-				else
-					if game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 then
-						if fkwarp == false then
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
-						end
-						fkwarp = true
-					end
-					wait(.08)
-					game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(15)
-					repeat
-						wait()
-					until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
-					wait(.1)
-					Com("F_", "SetspawnPoint")
-				end
-				wait(0.2)
-				return
-			end)
-		end
-	end
-	if not S then 
-		return g
-	end
-	function tweenfunc:Stop()
-		q:Cancel()
-	end 
-	function tweenfunc:Wait()
-		q.Completed:Wait()
-	end 
-	return tweenfunc
+    local RealtargetPos = {...}
+    local targetPos = RealtargetPos[1]
+    local p
+    if type(targetPos) == "vector" then
+        p = CFrame.new(targetPos)
+    elseif type(targetPos) == "userdata" then
+        p = targetPos
+    elseif type(targetPos) == "number" then
+        p = CFrame.new(unpack(RealtargetPos))
+    end
+
+    -- เช็คว่าผู้เล่นมีชีวิตหรือไม่ ถ้าไม่มีให้รอจนกว่าผู้เล่นจะมีชีวิตกลับ
+    while game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health == 0 do
+        wait()
+    end
+
+    -- เช็คว่าผู้เล่นอยู่ใกล้พิกัดที่ต้องการหรือไม่ ถ้าใกล้กว่า 50 หน่วยให้ย้ายตัวไปที่พิกัดนั้น
+    if game:GetService("Players").LocalPlayer:DistanceFromCharacter(p.Position) <= 40 then 
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = p
+    end
+
+    -- คำนวณความห่างระหว่างตำแหน่งปัจจุบันและตำแหน่งปลายทาง
+    local Distance = (p.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
+    local Speed
+    local randomNumber = math.random(365, 380)
+    if Distance < 256 then
+        Speed = 456
+    elseif Distance < 334 then
+        Speed = 389
+    elseif Distance < 556 then
+        Speed = 378
+    elseif Distance < 801 then
+        Speed = 370
+    elseif Distance >= 1000 then
+        Speed = randomNumber
+    end
+
+
+    -- กำหนดค่า TweenInfo และเริ่มเอฟเฟกต์ Tween
+    local B = TweenInfo.new(Distance / Speed, Enum.EasingStyle.Linear)
+    local z = game:GetService("TweenService")
+    local q = z:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], B, {CFrame = p})
+    q:Play()
+
+if _G.Settings.Bypass then
+    if Distance > 3000 and not AutoFarmMaterial and not _G.Settings.Auto_God_Human and not _G.Settings.Auto_Raids and not (
+        game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or 
+        game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or 
+        game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or 
+        game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or 
+        game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or 
+        game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or 
+        game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or 
+        game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")
+    ) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
+        pcall(function()
+            tween:Cancel()
+            fkwarp = false
+            if game:GetService("Players")["LocalPlayer"].Data:FindFirstChild("spawnPoint").Value == tostring(GetIsLand(p)) then 
+                wait(.1)
+                Com("F_", "TeleportTospawn")
+            elseif game:GetService("Players")["LocalPlayer"].Data:FindFirstChild("LastspawnPoint").Value == tostring(GetIsLand(p)) then
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(15)
+                wait(0.1)
+                repeat
+                    wait()
+                until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
+            else
+                if game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 then
+                    if fkwarp == false then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+                    end
+                    fkwarp = true
+                end
+                wait(.08)
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(15)
+                repeat
+                    wait()
+                until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
+                wait(.1)
+                Com("F_", "SetspawnPoint")
+            end
+            wait(0.2)
+            return
+        end)
+    end
+end
+    -- สร้างตัวแปรเก็บฟังก์ชันของ Tween เพื่อให้สามารถหยุดหรือรอได้
+    local tweenfunc = {}
+    function tweenfunc:Stop()
+        q:Cancel()
+    end 
+    function tweenfunc:Wait()
+        q.Completed:Wait()
+    end 
+
+    return tweenfunc
 end
 
 local function GetIsLand(...)
@@ -1543,7 +1593,7 @@ local function formatNumber(number)
 end
 ---------------------------------------------------------------
 
-spawn(function()
+--[[spawn(function()
 	pcall(function() --velocity
 		game:GetService("RunService").Stepped:Connect(function()
 			if _G.Auto_Farm_Levelx  or _G.Settings.Auto_Farm_Boss_Hallow or _G.Settings.Auto_Farm_Bone or _G.Settings.Auto_Buddy_Swords or _G.Settings.Auto_Cake_Prince or _G.AutoFactory or _G.Settings.Auto_Raids or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids_Kill_Mon or _G.AutoFarmBounty or _G.Safe_Mode or _G.Auto_Kill_Ply or _G.TeleportPly or getgenv().AutoObservation or getgenv().Auto_Farm_Chest or getgenv().FarmChestTween or getgenv().ChestFarm or _G.Evo_Race_V2 or _G.Auto_Dark_Coat or _G.Auto_Farm_law_Sword or _G.Auto_Bartilo_Quest or _G.Auto_New_World2 or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids or _G.Auto_Farm_Level or _G.AutoObservation or _G.TPNPCDF or _G.Auto_Kill_Player or AutoFarmMaterial or _G.AutoBuddySwords or _G.AutoCavander or _G.Bboat or _G.TPTOBOAT or _G.AutoEvent or _G.QRepairBoat or _G.QRepairBoat2 or _G.WoodPlank or _G.AutoMirageIsland or _G.Auto_Gear or _G.TptoKisuneIsland  or _G.NeareastFarm or _G.TptoKisuneshrine or _G.AutoFarmBossHallow or _G.Auto_Yama or _G.Auto_Sea_King or _G.Auto_Dack_Coat or _G.Auto_Rip_Indar or _G.Auto_Farm_Mastery_Gun or _G.Auto_Farm_All_Sword or _G.Auto_Awakening_One_Quest or _G.Auto_Lever_UnLock or _G.Auto_Complete_Trial or _G.Auto_Farm_Mastery_Fruit or Auto_Mirage_Island or Auto_Gear or _G.Auto_Farm_All_Boss or _G.Auto_New_World or _G.Auto_Third_World or _G.Auto_Farm_Chest or _G.Auto_Farm_Boss or _G.Auto_Castle_Raid or _G.Auto_Elite_Hunter or _G.Auto_Cake_Prince or _G.Auto_Farm_All_Boss or _G.Auto_Saber or _G.Auto_Pole or _G.Auto_Farm_Scrap_and_Leather or _G.Auto_Farm_Angel_Wing or _G.Auto_Factory_Farm or _G.Auto_Farm_Ectoplasm or _G.Auto_Bartilo_Quest or _G.Auto_Rengoku or _G.Auto_Farm_Radioactive or _G.Auto_Farm_Vampire_Fang or _G.Auto_Farm_Mystic_Droplet or _G.Auto_Farm_GunPowder or _G.Auto_Farm_Dragon_Scales or _G.Auto_Evo_Race_V2 or _G.Auto_Swan_Glasses or _G.Auto_Dragon_Trident or _G.Auto_Soul_Reaper or _G.Auto_Farm_Fish_Tail or _G.Auto_Farm_Mini_Tusk or _G.Auto_Farm_Magma_Ore or _G.Auto_Farm_Bone or _G.Auto_Farm_Conjured_Cocoa or _G.Auto_Open_Dough_Dungeon or _G.Auto_Rainbow_Haki or _G.Auto_Musketeer_Hat or _G.Auto_Holy_Torch or _G.Auto_Canvander or _G.Auto_Twin_Hook or _G.Auto_Serpent_Bow or _G.Auto_Fully_Death_Step or _G.Auto_Fully_SharkMan_Karate or _G.Teleport_to_Player or _G.Auto_Kill_Player_Melee or _G.Auto_Kill_Player_Gun or _G.Start_Tween_Island or _G.Auto_Next_Island or _G.Auto_Kill_Law then
@@ -1577,7 +1627,7 @@ spawn(function()
 
 		end)
 	end)
-end)
+end)]]
 
 --[[spawn(function()
 	pcall(function()
@@ -1762,6 +1812,48 @@ spawn(function()
 				else
                     Animation.AnimationId = ac.anims.basic[2]
                     ac.humanoid:LoadAnimation(Animation):Play(0.01, 0.01)  -- แก้เป็น (1,1) เพื่อให้เล่นอนิเมชันแบบเต็มรูปแบบ
+                    game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getAllBladeHits(77), 2, "") -- ส่งสัญญาณโดยให้มีการเรียกใช้ฟังก์ชันที่มีความสมดุลกัน
+                end
+            end)
+        end
+    end
+end)
+local cdnormal = 0  -- เวลาคูลดาวน์
+
+local function getAllBladeHits(damage)
+    -- โค้ดเกี่ยวกับการสร้างการโจมตีหรือการโจมตีแบบละเอียดยิบ
+end
+
+local function AttackC()
+    local ac = SeraphFrame.activeController
+    if not ac or not ac.equipped then
+        return
+    end
+    
+    if tick() - cdnormal > -math.huge then  -- ปรับเวลาคูลดาวน์ลงมาเหมาะสม
+        ac:Attack()
+        cdnormal = tick()
+    else
+        Animation.AnimationId = ac.anims.basic[2]
+        ac.humanoid:LoadAnimation(Animation):Play(1, 1)  -- เล่นอนิเมชันแบบเต็มรูปแบบ
+        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getAllBladeHits(77), 3, "") -- ส่งสัญญาณโดยให้มีการเรียกใช้ฟังก์ชันที่มีความสมดุลกัน
+    end
+end
+
+spawn(function()
+    while wait(0) do
+        if _G.FastAttack3 then
+            if b - tick() > -math.huge then
+                b = tick()
+            end
+            pcall(function()
+                local ac = SeraphFrame.activeController
+                if ac and ac.equipped then
+                    ac:AttackC()
+                    cdnormal = tick()
+                else
+                    Animation.AnimationId = ac.anims.basic[2]
+                    ac.humanoid:LoadAnimation(Animation):Play(1, 1)  -- เล่นอนิเมชันแบบเต็มรูปแบบ
                     game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getAllBladeHits(77), 2, "") -- ส่งสัญญาณโดยให้มีการเรียกใช้ฟังก์ชันที่มีความสมดุลกัน
                 end
             end)
@@ -4052,7 +4144,117 @@ task.spawn(function()
 	end
 end)
 
-	task.spawn(function() 
+task.spawn(function()
+	while task.wait() do
+		if _G.Auto_Farm_Level then
+			pcall(HandleQuest)
+		end
+	end
+end)
+
+function HandleQuest()
+	local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+	if QuestC.Visible then
+		local questTarget = QuestCheck()[3]
+		local targetEnemy = game:GetService("Workspace").Enemies:FindFirstChild(questTarget)
+		if targetEnemy then
+			HandleQuestEnemies(questTarget, targetEnemy)
+		else
+			HandleNonQuestEnemies()
+		end
+	else
+		HandleNonQuest()
+	end
+end
+
+function HandleQuestEnemies(questTarget, targetEnemy)
+	for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+		if v.Name == questTarget and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+			repeat
+				task.wait()
+				EquipWeapon(_G.Select_Weapon)
+				local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+				if not string.find(QuestTitle, questTarget) then
+					game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
+				else
+					HandleQuestMovement(v)
+					HandleQuestActions(v)
+				end
+			until not _G.Auto_Farm_Level or v.Humanoid.Health <= 0 or not QuestC.Visible
+		end
+	end
+end
+
+function HandleQuestMovement(enemy)
+	local playerPos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+	if (enemy.HumanoidRootPart.Position - playerPos).Magnitude <= 100 then
+		if enemy.Humanoid.Health <= enemy.Humanoid.MaxHealth * 40 / 100 then
+			HandleCombatActions(enemy)
+		else
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0) * CFrame.Angles(math.rad(90), 0, 0)
+			_G.SuperFastAttack = false
+		end
+	else
+		HandleNonCombatMovement(enemy)
+	end
+end
+
+function HandleCombatActions(enemy)
+	Attack()
+	AttackXFunction()
+	FASTAttack()
+	_G.SuperFastAttack = true
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * PosOdslob * CFrame.Angles(math.rad(90), 0, 0)
+end
+
+function HandleNonCombatMovement(enemy)
+	_G.SuperFastAttack = false
+	Tween(enemy.HumanoidRootPart.CFrame * CFrame.new(0, 60, 0))
+	game:GetService("VirtualUser"):CaptureController()
+	game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
+end
+
+function HandleQuestActions(enemy)
+	BringMobFarm = true
+	enemy.Head.CanCollide = false
+	enemy.Humanoid.WalkSpeed = 0
+	enemy.HumanoidRootPart.CanCollide = false
+	enemy.HumanoidRootPart.Size = Vector3.new(80, 80, 80)
+	if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 150 then
+		game:service("VirtualInputManager"):SendKeyEvent(true, "V", false, game)
+		game:service("VirtualInputManager"):SendKeyEvent(false, "V", false, game)
+	end
+end
+
+function HandleNonQuest()
+	if _G.TweentoQuest then
+		Tween(QuestCheck()[2])
+		if (QuestCheck()[2].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 then
+			HandleQuestStart()
+		end
+	else
+		StartQuest()
+	end
+end
+
+function StartQuest()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", QuestName, QuestLevel)
+end
+
+function HandleNonQuestEnemies()
+	_G.SuperFastAttack = false
+	Tween(PosMonLv)
+	UnEquipWeapon(_G.Select_Weapon)
+	if World2 and string.find(Name, "Ship") and (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude > 30000 then
+		if Modstween then Modstween:Stop() end
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
+	elseif World2 and not string.find(Name, "Ship") and (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude > 30000 then
+		if Modstween then Modstween:Stop() end
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-6508.5581054688, 89.034996032715, -132.83953857422))
+	end
+end
+
+--[[	task.spawn(function() 
 		while task.wait() do
 			if _G.Auto_Farm_Level then 
 				pcall(function()
@@ -4124,7 +4326,7 @@ end)
 				end)
 			end
 		end
-	end)
+	end)]]
 
 Main:Toggle('Auto Farm Nearest',_G.NeareastFarm,function(value)
 	_G.NeareastFarm = value
@@ -7657,7 +7859,7 @@ task.spawn(function()
 			if BringMobFarm then
 				local questTarget = QuestCheck()[3]
 				for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
-					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
+					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
 						-- ตั้ง CFrame ของมอนเตอร์ให้ตรงกับตำแหน่งที่กำหนด
 						mob.HumanoidRootPart.CFrame = PosMon
 						
@@ -7665,7 +7867,8 @@ task.spawn(function()
 						mob.Humanoid.JumpPower = 0
 						mob.Humanoid.WalkSpeed = 0
 						mob.Humanoid.NameDisplayDistance = 0
-						mob.HumanoidRootPart.Size = Vector3.new(77, 77, 77)
+						mob.HumanoidRootPart.Transparency = 1
+						mob.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
 						mob.HumanoidRootPart.CanCollide = false
 						mob.Head.CanCollide = false
 						
@@ -7679,13 +7882,15 @@ task.spawn(function()
 						sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius", math.huge)
 						
 						-- เปลี่ยนสถานะของ Humanoid เป็น Ragdoll
-						mob.Humanoid:ChangeState(12)
+						mob.Humanoid:ChangeState(11)
+						mob.Humanoid:ChangeState(14)
 					end
 				end
 			end
 		end)
 	end
 end)
+
 
 
 --[[spawn(function() 
@@ -7711,38 +7916,38 @@ end)
 	end
 end)]]
 
-    spawn(function()
-        while task.wait() do
-			if _G.Brimob and _G.Auto_Farm_Level then
-            	pcall(function()
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if BringMobFarm and (QuestCheck()[3] == "Factory Staff" or QuestCheck()[3] == "Monkey" or QuestCheck()[3] == "Yeti" or QuestCheck()[3] == "The Gorilla King" or QuestCheck()[3] == "Gorilla" or QuestCheck()[3] == "Dragon Crew Warrior" or QuestCheck()[3] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
-							v.HumanoidRootPart.Size = Vector3.new(77,77,77) --100
-                            v.HumanoidRootPart.CFrame = PosMon
-                            v.Humanoid:ChangeState(12) --14
-                            v.HumanoidRootPart.CanCollide = false
-                            v.Head.CanCollide = false
-							if v.Humanoid:FindFirstChild("Animator") then
-								v.Humanoid.Animator:Destroy()
-							end
-							sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-						elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position-PosMon.Position).Magnitude <= 289 then
-								v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-								v.HumanoidRootPart.CFrame = PosMon
-								v.Humanoid:ChangeState(8)
-								v.HumanoidRootPart.CanCollide = false
-								v.Head.CanCollide = false
-								if v.Humanoid:FindFirstChild("Animator") then
-									v.Humanoid.Animator:Destroy()
-								end
-								sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-							
+task.spawn(function()
+	while task.wait() do
+		if _G.Brimob and _G.Auto_Farm_Level then
+			pcall(function()
+				for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+					if BringMobFarm and (QuestCheck()[3] == "Factory Staff" or QuestCheck()[3] == "Monkey" or QuestCheck()[3] == "Yeti" or QuestCheck()[3] == "The Gorilla King" or QuestCheck()[3] == "Gorilla" or QuestCheck()[3] == "Dragon Crew Warrior" or QuestCheck()[3] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 380 then
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60) --100
+						v.HumanoidRootPart.CFrame = PosMon
+						v.Humanoid:ChangeState(14) --14
+						v.HumanoidRootPart.CanCollide = false
+						v.Head.CanCollide = false
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
 						end
-                    end
-                end)
-            end
-        end
-    end)
+						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+					elseif BringMobFarm and v.Parent == Enemies and (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 380 then
+						v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+						v.HumanoidRootPart.CFrame = PosMon
+						v.Humanoid:ChangeState(11)
+						v.HumanoidRootPart.CanCollide = false
+						v.Head.CanCollide = false
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
+						end
+						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+					end
+				end
+			end)
+		end
+	end
+end)
+
 
 --[[task.spawn(function()
 	while task.wait() do
