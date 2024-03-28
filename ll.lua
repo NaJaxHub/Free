@@ -364,273 +364,101 @@ local EnemySpawns = Instance.new("Folder",workspace)
 EnemySpawns.Name = "EnemySpawns"
 
 for i, v in pairs(workspace._WorldOrigin.EnemySpawns:GetChildren()) do
-	if v:IsA("Part") then
-		local EnemySpawnsX2 = v:Clone()
-		local result = string.gsub(v.Name, "Lv. ", "")
-		local result2 = string.gsub(result, "[%[%]]", "")
-		local result3 = string.gsub(result2, "%d+", "")
-		local result4 = string.gsub(result3, "%s+", "")
-		EnemySpawnsX2.Name = result4
-		EnemySpawnsX2.Parent = workspace.EnemySpawns
-		EnemySpawnsX2.Anchored = true
-	end
+if v:IsA("Part") then
+	local EnemySpawnsX2 = v:Clone()
+	local result = string.gsub(v.Name, "Lv. ", "")
+	local result2 = string.gsub(result, "[%[%]]", "")
+	local result3 = string.gsub(result2, "%d+", "")
+	local result4 = string.gsub(result3, "%s+", "")
+	EnemySpawnsX2.Name = result4
+	EnemySpawnsX2.Parent = workspace.EnemySpawns
+	EnemySpawnsX2.Anchored = true
+end
 end
 for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-	if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-		print(v.HumanoidRootPart.Parent)
-		local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
-		local result = string.gsub(v.Name, "Lv. ", "")
-		local result2 = string.gsub(result, "[%[%]]", "")
-		local result3 = string.gsub(result2, "%d+", "")
-		local result4 = string.gsub(result3, "%s+", "")
+if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+	print(v.HumanoidRootPart.Parent)
+	local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
+	local result = string.gsub(v.Name, "Lv. ", "")
+	local result2 = string.gsub(result, "[%[%]]", "")
+	local result3 = string.gsub(result2, "%d+", "")
+	local result4 = string.gsub(result3, "%s+", "")
 
-		print(result4)
-		EnemySpawnsX2.Name = result4
-		EnemySpawnsX2.Parent = workspace.EnemySpawns
-		EnemySpawnsX2.Anchored = true
-	end
+	print(result4)
+	EnemySpawnsX2.Name = result4
+	EnemySpawnsX2.Parent = workspace.EnemySpawns
+	EnemySpawnsX2.Anchored = true
+end
 end
 for i, v in pairs(game.ReplicatedStorage:GetChildren()) do
-	if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-		local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
-		local result = string.gsub(v.Name, "Lv. ", "")
-		local result2 = string.gsub(result, "[%[%]]", "")
-		local result3 = string.gsub(result2, "%d+", "")
-		local result4 = string.gsub(result3, "%s+", "")
+if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+	local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
+	local result = string.gsub(v.Name, "Lv. ", "")
+	local result2 = string.gsub(result, "[%[%]]", "")
+	local result3 = string.gsub(result2, "%d+", "")
+	local result4 = string.gsub(result3, "%s+", "")
 
-		print(result4)
-		EnemySpawnsX2.Name = result4
-		EnemySpawnsX2.Parent = workspace.EnemySpawns
-		EnemySpawnsX2.Anchored = true
-	end
+	print(result4)
+	EnemySpawnsX2.Name = result4
+	EnemySpawnsX2.Parent = workspace.EnemySpawns
+	EnemySpawnsX2.Anchored = true
+end
 end
 
+if game:IsLoaded() then
+pcall(function()
+	repeat wait()
+		game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+		game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+	until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") or not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn")
+end)
+end
+
+function UnEquipWeapon(Weapon)
+if game.Players.LocalPlayer.Character:FindFirstChild(Weapon) then
+	_G.NotAutoEquip = true
+	task.wait(.5)
+	game.Players.LocalPlayer.Character:FindFirstChild(Weapon).Parent = game.Players.LocalPlayer.Backpack
+	task.wait(.1)
+	_G.NotAutoEquip = false
+end
+end
+
+------------ // AutoUpdate \\ ------------
+
 local function QuestCheck()
-	local Lvl = game:GetService("Players").LocalPlayer.Data.Level.Value
-	if Lvl >= 1 and Lvl <= 9 then
-		if tostring(game.Players.LocalPlayer.Team) == "Marines" then
-			MobName = "Trainee"
-			QuestName = "MarineQuest"
-			QuestLevel = 1
-			Mon = "Trainee"
-			NPCPosition = CFrame.new(-2709.67944, 24.5206585, 2104.24585, -0.744724929, -3.97967455e-08, -0.667371571, 4.32403588e-08, 1, -1.07884304e-07, 0.667371571, -1.09201515e-07, -0.744724929)
-		elseif tostring(game.Players.LocalPlayer.Team) == "Pirates" then
-			MobName = "Bandit"
-			Mon = "Bandit"
-			QuestName = "BanditQuest1"
-			QuestLevel = 1
-			NPCPosition = CFrame.new(1059.99731, 16.9222069, 1549.28162, -0.95466274, 7.29721794e-09, 0.297689587, 1.05190106e-08, 1, 9.22064114e-09, -0.297689587, 1.19340022e-08, -0.95466274)
-		end
-		return {
-			[1] = QuestLevel,
-			[2] = NPCPosition,
-			[3] = MobName,
-			[4] = QuestName,
-			[5] = LevelRequire,
-			[6] = Mon,
-			[7] = MobCFrame
-		}
-	end
-	if Lvl >= 190 or Lvl <= 209 then -- Dark Master
-		Mon = "Prisoner"
-		QuestName = "PrisonerQuest"
+local Lvl = game:GetService("Players").LocalPlayer.Data.Level.Value
+if Lvl >= 1 and Lvl <= 9 then
+	if tostring(game.Players.LocalPlayer.Team) == "Marines" then
+		MobName = "Trainee [Lv. 5]"
+		QuestName = "MarineQuest"
 		QuestLevel = 1
-		MobName = "Prisoner"
-		NPCPosition = CFrame.new(5411, 96, 690)
-		local matchingCFrames = {}
-		local result = string.gsub(MobName, "Lv. ", "")
-		local result2 = string.gsub(result, "[%[%]]", "")
-		local result3 = string.gsub(result2, "%d+", "")
-		local result4 = string.gsub(result3, "%s+", "")
-		
-		for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
-			if v.Name == result4 then
-				table.insert(matchingCFrames, v.CFrame)
-			end
-			MobCFrame = matchingCFrames
-		end
-		return {
-			[1] = QuestLevel,
-			[2] = NPCPosition,
-			[3] = MobName,
-			[4] = QuestName,
-			[5] = LevelRequire,
-			[6] = Mon,
-			[7] = MobCFrame
-		}
-	end
-	if Lvl >= 210 and Lvl <= 249 then
-		MobName = "Dangerous Prisoner"
-		QuestName = "PrisonerQuest"
-		QuestLevel = 2
-		Mon = "Dangerous Prisoner"
-		NPCPosition = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)
-		local matchingCFrames = {}
-		local result = string.gsub(MobName, "Lv. ", "")
-		local result2 = string.gsub(result, "[%[%]]", "")
-		local result3 = string.gsub(result2, "%d+", "")
-		local result4 = string.gsub(result3, "%s+", "")
-		
-		for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
-			if v.Name == result4 then
-				table.insert(matchingCFrames, v.CFrame)
-			end
-			MobCFrame = matchingCFrames
-		end
-		return {
-			[1] = QuestLevel, 
-			[2] = NPCPosition,
-			[3] = MobName,
-			[4] = QuestName,
-			[5] = LevelRequire,
-			[6] = Mon,
-			[7] = MobCFrame
-		}
-	end
-
-
-	--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-	local GuideModule = require(game:GetService("ReplicatedStorage").GuideModule)
-	local Quests = require(game:GetService("ReplicatedStorage").Quests)
-	for i,v in pairs(GuideModule["Data"]["NPCList"]) do
-		for i1,v1 in pairs(v["Levels"]) do
-			if Lvl >= v1 then
-				if not LevelRequire then
-					LevelRequire = 0
-				end
-				if v1 > LevelRequire then
-					NPCPosition = i["CFrame"]
-					QuestLevel = i1
-					LevelRequire = v1
-				end
-				if #v["Levels"] == 3 and QuestLevel == 3 then
-					NPCPosition = i["CFrame"]
-					QuestLevel = 2
-					LevelRequire = v["Levels"][2]
-				end
-			end
-		end
-	end 
-	if Lvl == 375 and Lvl <= 399 then -- Fishman Warrior
-		NPCPosition = CFrame.new(61122.5625, 18.4716396, 1568.16504, 0.893533468, 3.95251609e-09, 0.448996574, -2.34327455e-08, 1, 3.78297464e-08, -0.448996574, -4.43233645e-08, 0.893533468)
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
-			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-			return
-		end
-	end
-
-	if Lvl == 400 and Lvl <= 449 then -- Fishman Commando
-		NPCPosition = CFrame.new(61122.5625, 18.4716396, 1568.16504, 0.893533468, 3.95251609e-09, 0.448996574, -2.34327455e-08, 1, 3.78297464e-08, -0.448996574, -4.43233645e-08, 0.893533468)
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
-			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-			return
-		end
-	end
-	if Lvl == 450 and Lvl <= 524 then -- Shanda
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 4500 then
-			--bBTPP(NPCPosition) 
-			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-		end
-	end
-	if Lvl == 525 and Lvl <= 549 then -- Royal Squad 
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
-			--bBTPP(NPCPosition) 
-			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-			return
-		end
-	end
-	if Lvl == 550 and Lvl <= 624 then -- Royal Squad 
-		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
-			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-			return
-		end
-	end
-	
-	for i,v in pairs(Quests) do
-		for i1,v1 in pairs(v) do
-			if v1["LevelReq"] == LevelRequire and i ~= "CitizenQuest" then
-				QuestName = i
-				for i2,v2 in pairs(v1["Task"]) do
-					MobName = i2
-					Mon = string.split(i2," [Lv. ".. v1["LevelReq"] .. "]")[1]
-				end
-			end
-		end
-	end
-	if QuestName == "MarineQuest2" then
-		QuestName = "MarineQuest2"
+		Mon = "Trainee"
+		NPCPosition = CFrame.new(-2709.67944, 24.5206585, 2104.24585, -0.744724929, -3.97967455e-08, -0.667371571, 4.32403588e-08, 1, -1.07884304e-07, 0.667371571, -1.09201515e-07, -0.744724929)
+	elseif tostring(game.Players.LocalPlayer.Team) == "Pirates" then
+		MobName = "Bandit [Lv. 5]"
+		Mon = "Bandit"
+		QuestName = "BanditQuest1"
 		QuestLevel = 1
-		MobName = "Chief Petty Officer"
-		Mon = "Chief Petty Officer"
-		LevelRequire = 120
-	elseif QuestName == "PrisonerQuest" then
-		QuestName = "PrisonerQuest"
-		QuestLevel = 1
-		MobName = "Prisoner"
-		Mon = "Prisoner"
-		LevelRequire = 190
-		NPCPosition = CFrame.new(5411, 96, 690)--CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)--CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
-	elseif QuestName == "PrisonerQuest" then
-		QuestName = "PrisonerQuest"
-		QuestLevel = 2
-		MobName = "Dangerous Prisoner"
-		Mon = "Dangerous Prisoner"
-		LevelRequire = 210
-		NPCPosition = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)--CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
-	elseif QuestName == "ImpelQuest" then
-		QuestName = "PrisonerQuest"
-		QuestLevel = 2
-		MobName = "Dangerous Prisoner"
-		Mon = "Dangerous Prisoner"
-		LevelRequire = 210
-		NPCPosition = CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
-	elseif QuestName == "FishmanQuest" then
-		NPCPosition = CFrame.new(61121.1094, 17.953125, 1564.52637, -0.913477898, 0, -0.406888306, 0, 1, 0, 0.406888306, 0, -0.913477898)
-		QuestName = "FishmanQuest"
-		if QuestLevel == 1 then
-			LevelRequire = 375
-			MobName = "Fishman Warrior"
-			Mon = "Fishman Warrior"
-		elseif QuestLevel == 2 then
-			LevelRequire = 400
-			MobName = "Fishman Commando"
-			Mon = "Fishman Commando"
-		end
-		if (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-		end
-	elseif QuestName == "SkyExp1Quest" then
-		if QuestLevel == 1 then
-			NPCPosition = CFrame.new(-4721.88867, 843.874695, -1949.96643, 0.996191859, -0, -0.0871884301, 0, 1, -0, 0.0871884301, 0, 0.996191859)
-		elseif QuestLevel == 2 then
-			NPCPosition = CFrame.new(-7859.09814, 5544.19043, -381.476196, -0.422592998, 0, 0.906319618, 0, 1, 0, -0.906319618, 0, -0.422592998)
-		end
-	elseif QuestName == "Area2Quest" and QuestLevel == 2 then
-		QuestName = "Area2Quest"
-		QuestLevel = 1
-		MobName = "Swan Pirate"
-		Mon = "Swan Pirate"
-		LevelRequire = 775
+		NPCPosition = CFrame.new(1059.99731, 16.9222069, 1549.28162, -0.95466274, 7.29721794e-09, 0.297689587, 1.05190106e-08, 1, 9.22064114e-09, -0.297689587, 1.19340022e-08, -0.95466274)
 	end
-	MobName = MobName:sub(1,#MobName)
-	if not MobName:find("Lv") then
-		for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-			MonLV = string.match(v.Name, "%d+")
-			if v.Name:find(MobName) and #v.Name > #MobName and tonumber(MonLV) <= Lvl + 50 then
-				MobName = v.Name
-			end
-		end
-	end
-	if not MobName:find("Lv") then
-		for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-			MonLV = string.match(v.Name, "%d+")
-			if v.Name:find(MobName) and #v.Name > #MobName and tonumber(MonLV) <= Lvl + 50 then
-				MobName = v.Name
-				Mon = a
-			end
-		end
-	end
+	return {
+		[1] = QuestLevel,
+		[2] = NPCPosition,
+		[3] = MobName,
+		[4] = QuestName,
+		[5] = LevelRequire,
+		[6] = Mon,
+		[7] = MobCFrame
+	}
+end
 
+if Lvl >= 210 and Lvl <= 249 then
+	MobName = "Dangerous Prisoner [Lv. 210]"
+	QuestName = "PrisonerQuest"
+	QuestLevel = 2
+	Mon = "Dangerous Prisoner"
+	NPCPosition = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918e-09, -0.995993316, 1.60817859e-09, 1, -5.16744869e-09, 0.995993316, -2.06384709e-09, -0.0894274712)
 	local matchingCFrames = {}
 	local result = string.gsub(MobName, "Lv. ", "")
 	local result2 = string.gsub(result, "[%[%]]", "")
@@ -640,12 +468,9 @@ local function QuestCheck()
 	for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
 		if v.Name == result4 then
 			table.insert(matchingCFrames, v.CFrame)
-		else
-			table.insert(matchingCFrames, nil)
 		end
 		MobCFrame = matchingCFrames
 	end
-	
 	return {
 		[1] = QuestLevel,
 		[2] = NPCPosition,
@@ -653,12 +478,128 @@ local function QuestCheck()
 		[4] = QuestName,
 		[5] = LevelRequire,
 		[6] = Mon,
-		[7] = MobCFrame,
-		[8] = MonQ,
-		[9] = MobCFrameNuber
+		[7] = MobCFrame
 	}
 end
 
+--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+local GuideModule = require(game:GetService("ReplicatedStorage").GuideModule)
+local Quests = require(game:GetService("ReplicatedStorage").Quests)
+for i,v in pairs(GuideModule["Data"]["NPCList"]) do
+	for i1,v1 in pairs(v["Levels"]) do
+		if Lvl >= v1 then
+			if not LevelRequire then
+				LevelRequire = 0
+			end
+			if v1 > LevelRequire then
+				NPCPosition = i["CFrame"]
+				QuestLevel = i1
+				LevelRequire = v1
+			end
+			if #v["Levels"] == 3 and QuestLevel == 3 then
+				NPCPosition = i["CFrame"]
+				QuestLevel = 2
+				LevelRequire = v["Levels"][2]
+			end
+		end
+	end
+end
+if Lvl >= 375 and Lvl <= 399 then -- Fishman Warrior
+	MobCFrame = CFrame.new(61122.5625, 18.4716396, 1568.16504, 0.893533468, 3.95251609e-09, 0.448996574, -2.34327455e-08, 1, 3.78297464e-08, -0.448996574, -4.43233645e-08, 0.893533468)
+	if _G.StartFarm and (MobCFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+		return
+	end
+end
+
+if Lvl >= 400 and Lvl <= 449 then -- Fishman Commando
+	MobCFrame = CFrame.new(61122.5625, 18.4716396, 1568.16504, 0.893533468, 3.95251609e-09, 0.448996574, -2.34327455e-08, 1, 3.78297464e-08, -0.448996574, -4.43233645e-08, 0.893533468)
+	if _G.StartFarm and (MobCFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+		return
+	end
+end
+for i,v in pairs(Quests) do
+	for i1,v1 in pairs(v) do
+		if v1["LevelReq"] == LevelRequire and i ~= "CitizenQuest" then
+			QuestName = i
+			for i2,v2 in pairs(v1["Task"]) do
+				MobName = i2
+				Mon = string.split(i2," [Lv. ".. v1["LevelReq"] .. "]")[1]
+			end
+		end
+	end
+end
+if QuestName == "MarineQuest2" then
+	QuestName = "MarineQuest2"
+	QuestLevel = 1
+	MobName = "Chief Petty Officer [Lv. 120]"
+	Mon = "Chief Petty Officer"
+	LevelRequire = 120
+elseif QuestName == "ImpelQuest" then
+	QuestName = "PrisonerQuest"
+	QuestLevel = 2
+	MobName = "Dangerous Prisoner [Lv. 190]"
+	Mon = "Dangerous Prisoner"
+	LevelRequire = 210
+	NPCPosition = CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
+elseif QuestName == "SkyExp1Quest" then
+	if QuestLevel == 1 then
+		NPCPosition = CFrame.new(-4721.88867, 843.874695, -1949.96643, 0.996191859, -0, -0.0871884301, 0, 1, -0, 0.0871884301, 0, 0.996191859)
+	elseif QuestLevel == 2 then
+		NPCPosition = CFrame.new(-7859.09814, 5544.19043, -381.476196, -0.422592998, 0, 0.906319618, 0, 1, 0, -0.906319618, 0, -0.422592998)
+	end
+elseif QuestName == "Area2Quest" and QuestLevel == 2 then
+	QuestName = "Area2Quest"
+	QuestLevel = 1
+	MobName = "Swan Pirate [Lv. 775]"
+	Mon = "Swan Pirate"
+	LevelRequire = 775
+end
+MobName = MobName:sub(1,#MobName)
+if not MobName:find("Lv") then
+	for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+		MonLV = string.match(v.Name, "%d+")
+		if v.Name:find(MobName) and #v.Name > #MobName and tonumber(MonLV) <= Lvl + 50 then
+			MobName = v.Name
+		end
+	end
+end
+if not MobName:find("Lv") then
+	for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+		MonLV = string.match(v.Name, "%d+")
+		if v.Name:find(MobName) and #v.Name > #MobName and tonumber(MonLV) <= Lvl + 50 then
+			MobName = v.Name
+			Mon = a
+		end
+	end
+end
+
+local matchingCFrames = {}
+local result = string.gsub(MobName, "Lv. ", "")
+local result2 = string.gsub(result, "[%[%]]", "")
+local result3 = string.gsub(result2, "%d+", "")
+local result4 = string.gsub(result3, "%s+", "")
+
+for i,v in pairs(game.workspace.EnemySpawns:GetChildren()) do
+	if v.Name == result4 then
+		table.insert(matchingCFrames, v.CFrame)
+	end
+	MobCFrame = matchingCFrames
+end
+
+return {
+	[1] = QuestLevel,
+	[2] = NPCPosition,
+	[3] = MobName,
+	[4] = QuestName,
+	[5] = LevelRequire,
+	[6] = Mon,
+	[7] = MobCFrame,
+	[8] = MonQ,
+	[9] = MobCFrameNuber
+}
+end
 
 
 function CheckBossQuest()
@@ -1169,28 +1110,30 @@ function bBTPP(xxxxx)
 end
 local function HandleNoclip()
 	if _G.Auto_Farm_Levelx  or _G.Settings.Auto_Farm_Boss_Hallow or _G.Settings.Auto_Farm_Bone or _G.Settings.Auto_Buddy_Swords or _G.Settings.Auto_Cake_Prince or _G.AutoFactory or _G.Settings.Auto_Raids or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids_Kill_Mon or _G.AutoFarmBounty or _G.Safe_Mode or _G.Auto_Kill_Ply or _G.TeleportPly or getgenv().AutoObservation or getgenv().Auto_Farm_Chest or getgenv().FarmChestTween or getgenv().ChestFarm or _G.Evo_Race_V2 or _G.Auto_Dark_Coat or _G.Auto_Farm_law_Sword or _G.Auto_Bartilo_Quest or _G.Auto_New_World2 or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids or _G.Auto_Farm_Level or _G.AutoObservation or _G.TPNPCDF or _G.Auto_Kill_Player or AutoFarmMaterial or _G.AutoBuddySwords or _G.AutoCavander or _G.Bboat or _G.TPTOBOAT or _G.AutoEvent or _G.QRepairBoat or _G.QRepairBoat2 or _G.WoodPlank or _G.AutoMirageIsland or _G.Auto_Gear or _G.TptoKisuneIsland  or _G.NeareastFarm or _G.TptoKisuneshrine or _G.AutoFarmBossHallow or _G.Auto_Yama or _G.Auto_Sea_King or _G.Auto_Dack_Coat or _G.Auto_Rip_Indar or _G.Auto_Farm_Mastery_Gun or _G.Auto_Farm_All_Sword or _G.Auto_Awakening_One_Quest or _G.Auto_Lever_UnLock or _G.Auto_Complete_Trial or _G.Auto_Farm_Mastery_Fruit or Auto_Mirage_Island or Auto_Gear or _G.Auto_Farm_All_Boss or _G.Auto_New_World or _G.Auto_Third_World or _G.Auto_Farm_Chest or _G.Auto_Farm_Boss or _G.Auto_Castle_Raid or _G.Auto_Elite_Hunter or _G.Auto_Cake_Prince or _G.Auto_Farm_All_Boss or _G.Auto_Saber or _G.Auto_Pole or _G.Auto_Farm_Scrap_and_Leather or _G.Auto_Farm_Angel_Wing or _G.Auto_Factory_Farm or _G.Auto_Farm_Ectoplasm or _G.Auto_Bartilo_Quest or _G.Auto_Rengoku or _G.Auto_Farm_Radioactive or _G.Auto_Farm_Vampire_Fang or _G.Auto_Farm_Mystic_Droplet or _G.Auto_Farm_GunPowder or _G.Auto_Farm_Dragon_Scales or _G.Auto_Evo_Race_V2 or _G.Auto_Swan_Glasses or _G.Auto_Dragon_Trident or _G.Auto_Soul_Reaper or _G.Auto_Farm_Fish_Tail or _G.Auto_Farm_Mini_Tusk or _G.Auto_Farm_Magma_Ore or _G.Auto_Farm_Bone or _G.Auto_Farm_Conjured_Cocoa or _G.Auto_Open_Dough_Dungeon or _G.Auto_Rainbow_Haki or _G.Auto_Musketeer_Hat or _G.Auto_Holy_Torch or _G.Auto_Canvander or _G.Auto_Twin_Hook or _G.Auto_Serpent_Bow or _G.Auto_Fully_Death_Step or _G.Auto_Fully_SharkMan_Karate or _G.Teleport_to_Player or _G.Auto_Kill_Player_Melee or _G.Auto_Kill_Player_Gun or _G.Start_Tween_Island or _G.Auto_Next_Island or _G.Auto_Kill_Law then
-		if not game.Workspace:FindFirstChild("Part") then
-			local Part = Instance.new("Part")
-			Part.Name = "Part"
-			Part.Parent = game.Workspace
-			Part.Anchored = true
-			Part.Transparency = 1
-			Part.Size = Vector3.new(50, 0.5, 50)
-		else
-			game.Workspace.Part.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.8, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
-		end
-		if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-			local Noclip = Instance.new("BodyVelocity")
-			Noclip.Name = "BodyClip"
-			Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-			Noclip.MaxForce = Vector3.new(100000, 100000, 100000)
-			Noclip.Velocity = Vector3.new(0, 0, 0)
-		end
-		for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-			if v:IsA("BasePart") then
-				v.CanCollide = false
+		pcall(function()
+			if not game.Workspace:FindFirstChild("Part") then
+				local Part = Instance.new("Part")
+				Part.Name = "Part"
+				Part.Parent = game.Workspace
+				Part.Anchored = true
+				Part.Transparency = 1
+				Part.Size = Vector3.new(50, 0.5, 50)
+			else
+				game.Workspace.Part.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.8, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
 			end
-		end
+			if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+				local Noclip = Instance.new("BodyVelocity")
+				Noclip.Name = "BodyClip"
+				Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+				Noclip.MaxForce = Vector3.new(100000, 100000, 100000)
+				Noclip.Velocity = Vector3.new(0, 0, 0)
+			end
+			for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if v:IsA("BasePart") then
+					v.CanCollide = false
+				end
+			end
+		end)
 	else
 		if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
@@ -1199,8 +1142,7 @@ local function HandleNoclip()
 end
 
 spawn(function()
-	while true do
-		wait() -- หยุดการทำงานเพื่อให้สิ่งที่เป็นตัวเลขกับบิตของคอมพิวเตอร์ได้เข้าคิวตามที่เข้าใจได้ดีขึ้น
+	while true do wait() -- หยุดการทำงานเพื่อให้สิ่งที่เป็นตัวเลขกับบิตของคอมพิวเตอร์ได้เข้าคิวตามที่เข้าใจได้ดีขึ้น
 		HandleNoclip()
 	end
 end)
@@ -4273,9 +4215,9 @@ task.spawn(function()
 			pcall(function()
 				QuestCheck()
 				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
+					if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
 						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-							if v.Name == MobName then
+							if v.Name == QuestCheck()[3] then
 								if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 									repeat task.wait()
 										EquipWeapon(_G.Select_Weapon)
@@ -4315,7 +4257,7 @@ end)
 				pcall(function()
 					QuestCheck()
 					local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-					if not string.find(QuestTitle, MobName) then
+					if not string.find(QuestTitle, QuestCheck()[3]) then
 						game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
 					end
 					local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
@@ -4356,13 +4298,13 @@ end)
 							_G.SuperFastAttack = false
 							Tween(PosMonLv) 
 							UnEquipWeapon(_G.Select_Weapon)
-							if World1 and (MobName == "Fishman Commando" or MobName == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+							if World1 and (QuestCheck()[3] == "Fishman Commando" or QuestCheck()[3] == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-							elseif World1 and not (MobName == "Fishman Commando" or MobName == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+							elseif World1 and not (QuestCheck()[3] == "Fishman Commando" or QuestCheck()[3] == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.8515625, 6.6796875, - 1926.7841796875))
-							elseif World2 and string.find(MobName, "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
+							elseif World2 and string.find(QuestCheck()[3], "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
-							elseif World2 and not string.find(MobName, "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
+							elseif World2 and not string.find(QuestCheck()[3], "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(- 6508.5581054688, 89.034996032715, - 132.83953857422))
 							end
 						end
@@ -4376,7 +4318,7 @@ end)
 								Tween(QuestCheck()[7][1] * CFrame.new(0,28,8))
 							end
 						else
-							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestName, QuestLevel)
+							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1])
 						end
 					end
 				end)
