@@ -528,6 +528,20 @@ local function QuestCheck()
 		MobName = "Chief Petty Officer"
 		Mon = "Chief Petty Officer"
 		LevelRequire = 120
+	elseif QuestName == "PrisonerQuest" then
+		QuestName = "PrisonerQuest"
+		QuestLevel = 1
+		MobName = "Prisoner"
+		Mon = "Prisoner"
+		LevelRequire = 190
+		NPCPosition = CFrame.new(5411, 96, 690)
+	elseif QuestName == "PrisonerQuest" then
+		QuestName = "PrisonerQuest"
+		QuestLevel = 2
+		MobName = "Dangerous Prisoner"
+		Mon = "Dangerous Prisoner"
+		LevelRequire = 210
+		NPCPosition = CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
 	elseif QuestName == "ImpelQuest" then
 		QuestName = "PrisonerQuest"
 		QuestLevel = 2
