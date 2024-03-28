@@ -4324,9 +4324,9 @@ end)
 														AttackXFunction()
 														FASTAttack()
 														_G.SuperFastAttack = true
-														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * PosOdslob-- * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
+														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(-30,25,30) * CFrame.Angles(math.rad(90), 0, 0) --
 													else
-														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)-- * CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
+														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)* CFrame.Angles(math.rad(90), 0, 0) --CFrame.new(0,30,0)
 														_G.SuperFastAttack = false
 													end
 												else
@@ -4341,6 +4341,7 @@ end)
 								end
 							end
 						else
+							BringMobFarm = false
 							_G.SuperFastAttack = false
 							Tween(PosMonLv) 
 							UnEquipWeapon(_G.Select_Weapon)
@@ -7908,7 +7909,6 @@ task.spawn(function()
 						mob.Humanoid.JumpPower = 0
 						mob.Humanoid.WalkSpeed = 0
 						mob.Humanoid.NameDisplayDistance = 0
-						mob.HumanoidRootPart.Size = Vector3.new(77, 77, 77)
 						mob.HumanoidRootPart.CanCollide = false
 						mob.Head.CanCollide = false
 						
@@ -7935,7 +7935,7 @@ spawn(function()
 		pcall(function()
 			if BringMobFarm then
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 600 then
+					if (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 350 then
 							v.HumanoidRootPart.CFrame = PosMon
 							v.Humanoid.JumpPower = 0
 							v.Humanoid.WalkSpeed = 0
