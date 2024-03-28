@@ -1117,17 +1117,17 @@ function bBTPP(xxxxx)
 end
 spawn(function()
 	while true do wait()
-		if _G.Auto_Farm_Levelx  or _G.Settings.Auto_Farm_Boss_Hallow or _G.Settings.Auto_Farm_Bone or _G.Settings.Auto_Buddy_Swords or _G.Settings.Auto_Cake_Prince or _G.AutoFactory or _G.Settings.Auto_Raids or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids_Kill_Mon or _G.AutoFarmBounty or _G.Safe_Mode or _G.Auto_Kill_Ply or _G.TeleportPly or getgenv().AutoObservation or getgenv().Auto_Farm_Chest or getgenv().FarmChestTween or getgenv().ChestFarm or _G.Evo_Race_V2 or _G.Auto_Dark_Coat or _G.Auto_Farm_law_Sword or _G.Auto_Bartilo_Quest or _G.Auto_New_World2 or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids or _G.Auto_Farm_Level or _G.AutoObservation or _G.TPNPCDF or _G.Auto_Kill_Player or AutoFarmMaterial or _G.AutoBuddySwords or _G.AutoCavander or _G.Bboat or _G.TPTOBOAT or _G.AutoEvent or _G.QRepairBoat or _G.QRepairBoat2 or _G.WoodPlank or _G.AutoMirageIsland or _G.Auto_Gear or _G.TptoKisuneIsland  or _G.NeareastFarm or _G.TptoKisuneshrine or _G.AutoFarmBossHallow or _G.Auto_Yama or _G.Auto_Sea_King or _G.Auto_Dack_Coat or _G.Auto_Rip_Indar or _G.Auto_Farm_Mastery_Gun or _G.Auto_Farm_All_Sword or _G.Auto_Awakening_One_Quest or _G.Auto_Lever_UnLock or _G.Auto_Complete_Trial or _G.Auto_Farm_Mastery_Fruit or Auto_Mirage_Island or Auto_Gear or _G.Auto_Farm_All_Boss or _G.Auto_New_World or _G.Auto_Third_World or _G.Auto_Farm_Chest or _G.Auto_Farm_Boss or _G.Auto_Castle_Raid or _G.Auto_Elite_Hunter or _G.Auto_Cake_Prince or _G.Auto_Farm_All_Boss or _G.Auto_Saber or _G.Auto_Pole or _G.Auto_Farm_Scrap_and_Leather or _G.Auto_Farm_Angel_Wing or _G.Auto_Factory_Farm or _G.Auto_Farm_Ectoplasm or _G.Auto_Bartilo_Quest or _G.Auto_Rengoku or _G.Auto_Farm_Radioactive or _G.Auto_Farm_Vampire_Fang or _G.Auto_Farm_Mystic_Droplet or _G.Auto_Farm_GunPowder or _G.Auto_Farm_Dragon_Scales or _G.Auto_Evo_Race_V2 or _G.Auto_Swan_Glasses or _G.Auto_Dragon_Trident or _G.Auto_Soul_Reaper or _G.Auto_Farm_Fish_Tail or _G.Auto_Farm_Mini_Tusk or _G.Auto_Farm_Magma_Ore or _G.Auto_Farm_Bone or _G.Auto_Farm_Conjured_Cocoa or _G.Auto_Open_Dough_Dungeon or _G.Auto_Rainbow_Haki or _G.Auto_Musketeer_Hat or _G.Auto_Holy_Torch or _G.Auto_Canvander or _G.Auto_Twin_Hook or _G.Auto_Serpent_Bow or _G.Auto_Fully_Death_Step or _G.Auto_Fully_SharkMan_Karate or _G.Teleport_to_Player or _G.Auto_Kill_Player_Melee or _G.Auto_Kill_Player_Gun or _G.Start_Tween_Island or _G.Auto_Next_Island or _G.Auto_Kill_Law then
+		if _G.Auto_Farm_Levelx or _G.Settings.Auto_Farm_Boss_Hallow or _G.Settings.Auto_Farm_Bone or _G.Settings.Auto_Buddy_Swords or _G.Settings.Auto_Cake_Prince or _G.AutoFactory or _G.Settings.Auto_Raids or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids_Kill_Mon or _G.AutoFarmBounty or _G.Safe_Mode or _G.Auto_Kill_Ply or _G.TeleportPly or getgenv().AutoObservation or getgenv().Auto_Farm_Chest or getgenv().FarmChestTween or getgenv().ChestFarm or _G.Evo_Race_V2 or _G.Auto_Dark_Coat or _G.Auto_Farm_law_Sword or _G.Auto_Bartilo_Quest or _G.Auto_New_World2 or _G.Settings.Auto_Next_Place or _G.Settings.Auto_Raids or _G.Auto_Farm_Level or _G.AutoObservation or _G.TPNPCDF or _G.Auto_Kill_Player or AutoFarmMaterial or _G.AutoBuddySwords or _G.AutoCavander or _G.Bboat or _G.TPTOBOAT or _G.AutoEvent or _G.QRepairBoat or _G.QRepairBoat2 or _G.WoodPlank or _G.AutoMirageIsland or _G.Auto_Gear or _G.TptoKisuneIsland  or _G.NeareastFarm or _G.TptoKisuneshrine or _G.AutoFarmBossHallow or _G.Auto_Yama or _G.Auto_Sea_King or _G.Auto_Dack_Coat or _G.Auto_Rip_Indar or _G.Auto_Farm_Mastery_Gun or _G.Auto_Farm_All_Sword or _G.Auto_Awakening_One_Quest or _G.Auto_Lever_UnLock or _G.Auto_Complete_Trial or _G.Auto_Farm_Mastery_Fruit or Auto_Mirage_Island or Auto_Gear or _G.Auto_Farm_All_Boss or _G.Auto_New_World or _G.Auto_Third_World or _G.Auto_Farm_Chest or _G.Auto_Farm_Boss or _G.Auto_Castle_Raid or _G.Auto_Elite_Hunter or _G.Auto_Cake_Prince or _G.Auto_Farm_All_Boss or _G.Auto_Saber or _G.Auto_Pole or _G.Auto_Farm_Scrap_and_Leather or _G.Auto_Farm_Angel_Wing or _G.Auto_Factory_Farm or _G.Auto_Farm_Ectoplasm or _G.Auto_Bartilo_Quest or _G.Auto_Rengoku or _G.Auto_Farm_Radioactive or _G.Auto_Farm_Vampire_Fang or _G.Auto_Farm_Mystic_Droplet or _G.Auto_Farm_GunPowder or _G.Auto_Farm_Dragon_Scales or _G.Auto_Evo_Race_V2 or _G.Auto_Swan_Glasses or _G.Auto_Dragon_Trident or _G.Auto_Soul_Reaper or _G.Auto_Farm_Fish_Tail or _G.Auto_Farm_Mini_Tusk or _G.Auto_Farm_Magma_Ore or _G.Auto_Farm_Bone or _G.Auto_Farm_Conjured_Cocoa or _G.Auto_Open_Dough_Dungeon or _G.Auto_Rainbow_Haki or _G.Auto_Musketeer_Hat or _G.Auto_Holy_Torch or _G.Auto_Canvander or _G.Auto_Twin_Hook or _G.Auto_Serpent_Bow or _G.Auto_Fully_Death_Step or _G.Auto_Fully_SharkMan_Karate or _G.Teleport_to_Player or _G.Auto_Kill_Player_Melee or _G.Auto_Kill_Player_Gun or _G.Start_Tween_Island or _G.Auto_Next_Island or _G.Auto_Kill_Law then
 			pcall(function()
 				if not game.Workspace:FindFirstChild("Part") then
-					local PartNaJa = Instance.new("Part")
-					PartNaJa.Name = "PartNaJa"
-					PartNaJa.Parent = game.Workspace
-					PartNaJa.Anchored = true
-					PartNaJa.Transparency = 1
-					PartNaJa.Size = Vector3.new(50, 0.5, 50)
+					local Part = Instance.new("Part")
+					Part.Name = "Part"
+					Part.Parent = game.Workspace
+					Part.Anchored = true
+					Part.Transparency = 1
+					Part.Size = Vector3.new(123, 0.5, 123)
 				else
-					game.Workspace.PartNaJa.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.8, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+					game.Workspace.Part.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.8, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
 				end
 				if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 					local Noclip = Instance.new("BodyVelocity")
@@ -4193,10 +4193,10 @@ end)
 spawn(function() 
 	while wait() do
 		if _G.Auto_Farm_Level then 
-			pcall(function()
+			pcall(function() QuestCheck()
 				if game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren() then
 					for i , v in pairs(game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren()) do
-						if string.find(v.Name, QuestCheck()[3]) then
+						if string.find(v.Name, MobName) then
 							_G.PosMonFarmLvSetCFarme = 1
 								repeat task.wait()
 									--if (v.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 1 and (v.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2500 then
@@ -4212,15 +4212,20 @@ spawn(function()
 		end
 	end
 end)
+
 task.spawn(function() 
 	while task.wait() do
 		if _G.Auto_Farm_Level then 
 			pcall(function()
 				QuestCheck()
+				local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+				if not string.find(QuestTitle, MobName) then
+					game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
+				end
 				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-					if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-							if v.Name == QuestCheck()[3] then
+							if v.Name == MobName then
 								if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 									repeat task.wait()
 										EquipWeapon(_G.Select_Weapon)
@@ -4259,15 +4264,11 @@ end)
 			if _G.Auto_Farm_Level then 
 				pcall(function()
 					QuestCheck()
-					local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-					if not string.find(QuestTitle, QuestCheck()[3]) then
-						game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("AbandonQuest")
-					end
 					local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 					if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-						if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+						if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-								if v.Name == QuestCheck()[3] then
+								if v.Name == MobName then
 									if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 										repeat
 											task.wait()
@@ -4301,13 +4302,13 @@ end)
 							_G.SuperFastAttack = false
 							Tween(PosMonLv) 
 							UnEquipWeapon(_G.Select_Weapon)
-							if World1 and (QuestCheck()[3] == "Fishman Commando" or QuestCheck()[3] == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+							if World1 and (MobName == "Fishman Commando" or MobName == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-							elseif World1 and not (QuestCheck()[3] == "Fishman Commando" or QuestCheck()[3] == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
+							elseif World1 and not (MobName == "Fishman Commando" or MobName == "Fishman Warrior") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.8515625, 6.6796875, - 1926.7841796875))
-							elseif World2 and string.find(QuestCheck()[3], "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
+							elseif World2 and string.find(MobName, "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
-							elseif World2 and not string.find(QuestCheck()[3], "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
+							elseif World2 and not string.find(MobName, "Ship") and (NPCPosition.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 30000 then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(- 6508.5581054688, 89.034996032715, - 132.83953857422))
 							end
 						end
@@ -4321,7 +4322,7 @@ end)
 								Tween(QuestCheck()[7][1] * CFrame.new(0,28,8))
 							end
 						else
-							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1])
+							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestName, QuestLevel)
 						end
 					end
 				end)
@@ -4391,9 +4392,9 @@ spawn(function()
 		pcall(function()
 			if _G.Auto_Farm_Mastery_Fruit then
 				if QuestC.Visible == true then
-					if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-							if v.Name == QuestCheck()[3] then
+							if v.Name == MobName then
 								if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 									repeat task.wait() EquipBloxFruitt()
 										if v.Humanoid.Health <= v.Humanoid.MaxHealth * MobHealthFruits/100 then
@@ -4487,9 +4488,9 @@ end)
 
 function EquipBloxFruitt()
 	pcall(function()
-		if _G.Auto_Farm_Mastery_Fruit and game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+		if _G.Auto_Farm_Mastery_Fruit and game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 			for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-				if v.Name == QuestCheck()[3] then
+				if v.Name == MobName then
 					if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 						game:GetService 'VirtualUser':CaptureController() game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672))
 						if v.Humanoid.Health <= v.Humanoid.MaxHealth * MobHealthFruits/100 then
@@ -4510,9 +4511,9 @@ spawn(function()
 	while task.wait() do
 		pcall(function()
 			if _G.UseSkill then
-				if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+				if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-						if v.Name == QuestCheck()[3] then
+						if v.Name == MobName then
 							if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 150 then
 								if game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
 									MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
@@ -4691,9 +4692,9 @@ spawn(function()
 		pcall(function()
 			if _G.Auto_Farm_Mastery_Gun then
 				if QuestC.Visible == true then
-					if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+					if game:GetService("Workspace").Enemies:FindFirstChild(MobName) then
 						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-							if v.Name == QuestCheck()[3] then
+							if v.Name == MobName then
 								if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 									PosMon = v.HumanoidRootPart.CFrame
 									MonHumanoidRootPart = v.HumanoidRootPart
@@ -4791,7 +4792,7 @@ function CheckMonFF(trg_part)
 	local nearest = nil
 	local last = math.huge
 	for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-		if v.Name == QuestCheck()[3] then
+		if v.Name == MobName then
 			local ePos, vissss = workspace.CurrentCamera:WorldToViewportPoint(v[trg_part].Position)
 			local AccPos = Vector2.new(ePos.x, ePos.y)
 			local mousePos = Vector2.new(workspace.CurrentCamera.ViewportSize.x / 2, workspace.CurrentCamera.ViewportSize.y / 2)
@@ -7857,7 +7858,7 @@ task.spawn(function()
 	while task.wait() do
 		pcall(function()
 			if BringMobFarm then
-				local questTarget = QuestCheck()[3]
+				local questTarget = MobName
 				for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
 					if mob.Name == questTarget and (mob.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
 						-- ตั้ง CFrame ของมอนเตอร์ให้ตรงกับตำแหน่งที่กำหนด
@@ -7919,7 +7920,7 @@ end)
 			if _G.Brimob and _G.Auto_Farm_Level then
             	pcall(function()
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if BringMobFarm and (QuestCheck()[3] == "Factory Staff" or QuestCheck()[3] == "Monkey" or QuestCheck()[3] == "Yeti" or QuestCheck()[3] == "The Gorilla King" or QuestCheck()[3] == "Gorilla" or QuestCheck()[3] == "Dragon Crew Warrior" or QuestCheck()[3] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
+                        if BringMobFarm and (MobName == "Factory Staff" or MobName == "Monkey" or MobName == "Yeti" or MobName == "The Gorilla King" or MobName == "Gorilla" or MobName == "Dragon Crew Warrior" or MobName == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 234 then
 							v.HumanoidRootPart.Size = Vector3.new(100,100,100) --100
                             v.HumanoidRootPart.CFrame = PosMon
                             v.Humanoid:ChangeState(12) --14
@@ -8005,7 +8006,7 @@ end)
 		pcall(function()
 			if BringMobFarm then
 				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-					if v.Name == QuestCheck()[3] and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 350 then
+					if v.Name == MobName and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 350 then
 						v.HumanoidRootPart.CFrame = PosMon
 						v.HumanoidRootPart.Size = Vector3.new(77,77,77)
 						v.HumanoidRootPart.Transparency = 1
