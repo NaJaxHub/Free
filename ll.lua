@@ -4194,6 +4194,10 @@ spawn(function()
 		wait(0.3)
 	end
 end)
+function Tweennnnposmon()
+	PosMonLv = QuestCheck()[7][1] * CFrame.new(0,55,0)
+	wait(20)
+end
 
 spawn(function() 
 	while wait() do
@@ -4204,15 +4208,14 @@ spawn(function()
 						if string.find(v.Name, MobName) then
 							_G.PosMonFarmLvSetCFarme = 1
 							repeat task.wait()
-									PosMonLv = v.CFrame * CFrame.new(0,55,0)
-									task.wait(1)--1.5
-									_G.PosMonFarmLvSetCFarme = 2
-									task.wait(0.05)
+								PosMonLv = v.CFrame * CFrame.new(0,55,0)
+								task.wait(1)--1.5
+								_G.PosMonFarmLvSetCFarme = 2
+								task.wait(0.05)
+								Tweennnnposmon()
 							until not _G.Auto_Farm_Level or _G.PosMonFarmLvSetCFarme == 2
 						end
 					end
-				else
-					PosMonLv = QuestCheck()[7][1] * CFrame.new(0,55,0)
 				end
 			end)
 		end
