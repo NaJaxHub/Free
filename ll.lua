@@ -2110,11 +2110,13 @@ if randomNumberUI == 1 then
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI 1 ทำงาน")
-elseif randomNumberUI == 2 then
+end
+if randomNumberUI == 2 then
 	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
 	print("UI 2 ทำงาน")
-else
+end
+if randomNumberUI == 1 and randomNumberUI == 2 then
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI เดิม")
