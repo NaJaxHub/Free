@@ -2105,7 +2105,8 @@ print("สุ่ม UI ได้ UI ที่:", randomNumber)]]
 		end
 	end
 end)]] 
---[[if randomNumber == 1 then
+
+if randomNumber == 1 then
 	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI 1 ทำงาน")
@@ -2113,11 +2114,15 @@ elseif randomNumber == 2 then
 	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
 	print("UI 2 ทำงาน")
-end]] 
+else
+	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
+	_G.ColorWiat = Color3.fromRGB(30,12,12)
+	print("UI เดิม")
+end
 
---[[_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
-_G.ColorWiat = Color3.fromRGB(30,12,12)
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()]]
+--_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
+--_G.ColorWiat = Color3.fromRGB(30,12,12)
+
 
 --[[if randomNumber == 1 or randomNumber == 2 then
 else
@@ -2162,8 +2167,8 @@ else
     --print("ไม่พบอ็อบเจ็กต์ 'Effect' ใน ReplicatedStorage")
 end
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
-
+--local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NaJaxHub/ser/main/UI-Kz"))()
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/bz0R9g7G"))()
 print("library..Set")
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -4193,8 +4198,7 @@ end)
 spawn(function() 
 	while wait() do
 		if _G.Auto_Farm_Level then 
-			pcall(function()
-				QuestCheck()
+			pcall(function() QuestCheck()
 				if game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren() then
 					for i , v in pairs(game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren()) do
 						if string.find(v.Name, MobName) then
@@ -4208,13 +4212,7 @@ spawn(function()
 						end
 					end
 				else
-					if game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren() then
-						for i , v in pairs(game:GetService("Workspace")._WorldOrigin.EnemySpawns:GetChildren()) do
-							if v.Name == MobName then
-								PosMonLv = v.CFrame * CFrame.new(0,55,0)
-							end
-						end
-					end
+					PosMonLv = QuestCheck()[7][1] * CFrame.new(0,55,0)
 				end
 			end)
 		end
