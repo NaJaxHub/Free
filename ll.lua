@@ -4210,9 +4210,9 @@ spawn(function()
 							repeat task.wait()
 								PosMonLv = v.CFrame * CFrame.new(0,55,0)
 								task.wait(1)--1.5
+								Tweennnnposmon()
 								_G.PosMonFarmLvSetCFarme = 2
 								task.wait(0.05)
-								Tweennnnposmon()
 							until not _G.Auto_Farm_Level or _G.PosMonFarmLvSetCFarme == 2
 						end
 					end
