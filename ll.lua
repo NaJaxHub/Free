@@ -2089,12 +2089,12 @@ getgenv().TextUI_IIII = "Wallet : xxx-xxx-xxxx | 37/3/2567" --19-3-2567--28/4/25
 			  print("UI.Lo")
 			  --
 -- กำหนดช่วงของตัวเลขที่ต้องการสุ่ม
---[[local minNumber = 1
-local maxNumber = 2--3
+--local minNumber = 1
+--local maxNumber = 2--3
 
 -- สุ่มเลข
-local randomNumber = math.random(minNumber, maxNumber)
-print("สุ่ม UI ได้ UI ที่:", randomNumber)]]
+local randomNumberUI = math.random(1, 2)
+print("สุ่ม 1-2 UI ได้ UI ที่:", randomNumberUI)
 --[[spawn(function()
 	while wait() do 
 		for i = 1,255 do --255
