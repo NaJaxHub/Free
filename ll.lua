@@ -500,12 +500,12 @@ local function QuestCheck()
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
 	end
-		if Lvl >= 525 and Lvl <= 549 then -- Royal Squad 
+	if Lvl >= 525 and Lvl <= 549 then -- Royal Squad 
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 7000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
 	end
-		if Lvl >= 550 and Lvl <= 624 then -- Royal Squad 
+	if Lvl >= 550 and Lvl <= 624 then -- Royal Squad 
 		if _G.Auto_Farm_Level and (NPCPosition.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 7000 then
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 		end
@@ -2115,8 +2115,8 @@ elseif randomNumber == 2 then
 	_G.ColorWiat = Color3.fromRGB(30,12,12)
 	print("UI 2 ทำงาน")
 else
-	_G.Color = Color3.fromRGB(180, 80, 100) -- สี Gui
-	_G.ColorWiat = Color3.fromRGB(30,12,12)
+	_G.Color = Color3.fromRGB(80, 80, 80) -- สี Gui
+	_G.ColorWiat = Color3.fromRGB(0,0,0)
 	print("UI เดิม")
 end
 
